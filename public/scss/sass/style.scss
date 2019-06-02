@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Mandali|Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ranga&display=swap');
+body {
+  background-image: url("../../img/background3.jpg");
+  background-size: cover;
+  font-family: 'Mandali', sans-serif;
+}
+
+.view {
+  background: url("../../img/Arrière-plan-copie.png") no-repeat center center;
+  background-size: cover;
+}
+
+.view {
+  height: 70%;
+
+}
+
+
+.sous-banniere {
+  padding-top: 6%;
+  padding-bottom: 3%;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: black;
+  font-size: 1.3em;
+}
+
+
+.form-control.search {
+  border: 3px solid rgba(85, 136, 77, 0.6) !important;
+  border-radius: 100px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-top: 30px;
+  background-color: #FFFFFF !important;
+}
+
+
+.rotate {
+  transform: rotate(-90deg);
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+}
+.cards {
+  width: 300px;
+}
+
+
+
+
+footer {
+  background-color: rgba(85, 136, 77, 0.6) !important;
+  opacity: 0.8;
+}
+
+.rgba-green-light, .rgba-green-light:after {
+  background-color: rgba(85, 136, 77, 0.5);
+}
+
+.h-30 {
+  height: 30%;
+}
+
+.main {
+  margin-top: 50px;
+}
+
+.main > .card {
+  margin: 0 auto
+}
+
+.search {
+  margin: 0 auto;
+}
+
+
+footer a {
+  color: #ffffff;
+}
+
+.speach {
+  text-align: center;
+  font-size: 2.5em;
+  font-family: 'Ranga', cursive;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 990px) {
+  .speach{
+    margin-top: -50px;
+    font-size: 2rem;
+  }
+  .logo {
+    display: none;
+    width: 60px;
+    height: auto;
+  }
+
+}
+
+.speach span{
+  color: #8d0e0a;
+}
+
+.fixed
+{
+  position: fixed;
+  top: 35px;
+}
+
+#header.fixed {position:fixed;width:100%;top:0;left:0;margin-top:0;}
+
+.caddie{
+  margin-top: -150px;
+}
+
+.navigation2, .navigation1{
+  position:relative;
+  z-index: 999999;
+}
+
+.navigation2{
+  display: none;
+}
+/* Only for snippet */
+.double-nav .breadcrumb-dn {
+  color: #fff;
+}
+
+.sidebar{
+  height: 600px;
+}
+
+.description {
+  margin: 0 auto;
+  width: 170px;
+  bottom: 200px;
+  display: none;
+}
+
+#idval{
+  margin-bottom: 50px;
+}

@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Mandali|Titillium+Web&display=swap');
+.view {
+  background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg") no-repeat center center;
+  background-size: cover;
+}
+
+html,
+body,
+header,
+.view {
+  height: 70%;
+}
+
+body {
+  background-image: url("img/background-3.jpg");
+  background-size: cover;
+  font-family: "Mandali", sans-serif;
+}
+
+.sous-banniere {
+  padding-top: 6%;
+  padding-bottom: 3%;
+}
+
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color: black;
+  font-size: 1.3em;
+}
+
+.form-control.search {
+  border: 1px solid transparent !important;
+  border-radius: 100px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-top: 30px;
+  background-color: #FFFFFF !important;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 40px;
+  margin: auto;
+}
+main .cards {
+  width: 300px;
+}
+
+.description {
+  margin: 0 auto;
+  display: none;
+  width: 170px;
+  bottom: 200px;
+}
+
+footer {
+  background-color: rgba(85, 136, 77, 0.6) !important;
+  opacity: 0.8;
+}
+
+.rgba-white-light, .rgba-white-light:after {
+  background-color: rgba(85, 136, 77, 0.5);
+}
+
+/*# sourceMappingURL=style.css.map */
