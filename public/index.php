@@ -1,6 +1,6 @@
 <?php
 define('ROOT', dirname(__DIR__));
-require ROOT . '/app/App.php';
+require ROOT . '/App/App.php';
 App::load();
 
 if (isset($_GET['p'])) {
