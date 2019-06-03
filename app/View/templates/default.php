@@ -15,7 +15,9 @@
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="scss/sass/style.scss">
 </head>
-
+<?php foreach($carts as $cart){
+    echo $cart->totalcart;
+}; ?>
 <body>
 <header class="navigation1">
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong scrolling-navbar">
@@ -42,7 +44,8 @@
                                aria-label="Search">
                     </li>
                     <li class="nav-item row caddie">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?p=cart.index">
+
                             <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
                                  id="animated-img1">
                         </a>
@@ -90,7 +93,7 @@
                                aria-label="Search">
                     </li>
                     <li class="nav-item row caddie2">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?p=cart.index">
                             <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
                                  id="animated-img1">
                         </a>

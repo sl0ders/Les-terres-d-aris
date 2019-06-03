@@ -1,26 +1,18 @@
 <!--Main Layout-->
 <main>
     <div class="container">
-        <!--Section: Team v.1-->
         <div class="col-md-12">
-            <!-- Tab panels -->
-            <div class="tab-content">
-                <!--Panel 1-->
-                <div class="tab-pane fade  show active" id="panel11" role="tabpanel">
+             <div class="tab-content">
+                 <div class="tab-pane fade  show active" id="panel11" role="tabpanel">
                     <br>
-                    <!--Grid row-->
-                    <div class="row">
-                        <!--Grid column-->
-                        <div class="col-md-12">
-                            <!--Projects section v.4-->
-                            <section class="text-center mb-5">
-                                <!--Grid row-->
-                                <div class="row ">
-                                    <!--Grid column-->
+                     <div class="row">
+                         <div class="col-md-12">
+                             <section class="text-center mb-5">
+                                 <div class="row ">
+
                                     <div class="col-md-6">
                                         <div class="card card-image"
                                              style="background-image: url('../../../public/img/historique-jpg1.jpg');">
-                                            <!-- Content -->
                                             <div class="text-white text-center d-flex align-items-center rgba-blue-strong py-5 px-4">
                                                 <div>
                                                     <h3 class="mb-4 mt-4 font-weight-bold">
@@ -28,7 +20,7 @@
                                                     </h3>
                                                     <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                         editez vos factures</p>
-                                                    <a href="index.php?p=admin.profil.order">
+                                                    <a href="index. php?p=admin.profil.order">
                                                         <button class="btn btn-outline-white btn-sm">
                                                             <i class="fas fa-clone left"></i> Entrer
                                                         </button>
