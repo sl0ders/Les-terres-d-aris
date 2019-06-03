@@ -21,10 +21,16 @@ class DBAuth
      */
     public function login($email, $pass)
     {
-        $user = $this->db->prepare('SELECT users.id, users.hash, users.firstname, users.name FROM users WHERE email = ?', [$email], null, true);
+        $user = $this->db->prepare('SELECT users.id,users.username,users.email, users.hash, users.firstname,users.imgProfil, users.name FROM users WHERE email = ?', [$email], null, true);
         if ($user) {
             if (password_verify($pass, $user->hash)) {
                 $_SESSION['auth'] = $user->id;
+                $_SESSION['firstname'] = $user->firstname;
+                $_SESSION['imgProfile'] = $user->imgProfil;
+                $_SESSION['name'] = $user->name;
+                $_SESSION['username'] = $user->username;
+                $_SESSION['email'] = $user->email;
+
                 return true;
             }
         }

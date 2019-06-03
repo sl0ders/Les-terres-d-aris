@@ -20,7 +20,7 @@
                                                     </h3>
                                                     <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                         editez vos factures</p>
-                                                    <a href="index. php?p=admin.profil.order">
+                                                    <a href="index.php?p=admin.profil.order">
                                                         <button class="btn btn-outline-white btn-sm">
                                                             <i class="fas fa-clone left"></i> Entrer
                                                         </button>

@@ -21,6 +21,7 @@ class CartController extends AppController
 
     public function add(){
         if (!empty($_POST)){
+            
             if ($_POST["cartQuantity"] > 0 ){
                 $result = $this->Cart->create([
                    'quantity' => htmlspecialchars($_POST["cartQuantity"])

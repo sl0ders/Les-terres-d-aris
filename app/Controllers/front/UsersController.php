@@ -70,12 +70,11 @@ class UsersController extends AppController
 
     public function login()
     {
-
         $errors = false;
         if (!empty($_POST)) {
             $auth = new DBAuth(App::getInstance()->getDb());
             if ($auth->login(htmlspecialchars($_POST['email']), htmlspecialchars($_POST['pass']))) {
-                echo '<script>window.location="index.php?p=admin.profil";</script>';
+                echo '<script>window.location="index.php";</script>';
                 exit;
             } else {
                 $errors = true;
@@ -86,10 +85,9 @@ class UsersController extends AppController
     }
 
     public function disconnect()
-
     {
         session_destroy();
-        echo '<script type="text/javascript">window.location="index.php?p=articles.index";</script>';
+        echo '<script type="text/javascript">window.location="index.php";</script>';
         exit;
     }
 }

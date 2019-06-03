@@ -4,7 +4,6 @@ namespace App\Model;
 
 class UserModel extends Model
 {
-
     protected $table = 'users';
 
     public function verifMail($mail)

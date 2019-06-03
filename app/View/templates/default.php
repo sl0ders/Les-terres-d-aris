@@ -15,9 +15,6 @@
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="scss/sass/style.scss">
 </head>
-<?php foreach($carts as $cart){
-    echo $cart->totalcart;
-}; ?>
 <body>
 <header class="navigation1">
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong scrolling-navbar">
@@ -34,7 +31,11 @@
                             <img src="img/logo.png" width="120" height="70" alt="logo" class="logo">
                         </a>
                     </li>
+                    <?php if (isset($_SESSION['auth'])){ ?>
+                    <li class="nav-item">
+                        <?php } else { ?>
                     <li class="nav-item ml-5 pl-5">
+                        <?php } ?>
                         <p></p>
                         <p class="speach ml-5 pl-5">Les terres d'Aris <br> Mangez <span> BON </span> mangez
                             <span> BIO</span> !!
@@ -57,13 +58,14 @@
                             <div class="nav-item avatar dropdown mt-4">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
+                                    <img src="<?= $_SESSION['imgProfile']?>"
                                          class="rounded-circle z-depth-0" alt="avatar image">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
-                                    <a class="dropdown-item" href="index.php?=admin.profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=admin.profil.index">Mon compte</a>
                                     <a class="dropdown-item" href="index.php?p=admin.profil.order">Mes commandes</a>
+                                    <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
                         <?php endif ?>
@@ -102,18 +104,19 @@
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                        <div class="nav-item avatar dropdown mt-4">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
-                                     class="rounded-circle z-depth-0" alt="avatar image">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-                                 aria-labelledby="navbarDropdownMenuLink-55">
-                                <a class="dropdown-item" href="index.php?=admin.profil.index">Mon compte</a>
-                                <a class="dropdown-item" href="index.php?p=admin.profil.order">Mes commandes</a>
+                            <div class="nav-item avatar dropdown mt-4">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <img src="<?= $_SESSION['imgProfile']?>"
+                                         class="rounded-circle z-depth-0" alt="avatar image">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                     aria-labelledby="navbarDropdownMenuLink-55">
+                                    <a class="dropdown-item" href="index.php?p=admin.profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=admin.profil.order">Mes commandes</a>
+                                    <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
+                                </div>
                             </div>
-                        </div>
                         <?php endif ?>
                     </li>
                 </ul>

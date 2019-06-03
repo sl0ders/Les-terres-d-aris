@@ -4,20 +4,23 @@
 namespace App\Controllers\Admin;
 
 
+use App\View\HTML\BootstrapForm;
+
 class ProfilController extends AppController
 {
     public function __construct()
     {
         parent::__construct();
         $this->loadModel('Product');
-        $this->loadModel('Users');
-        $this->loadmodel('Comment');
+        $this->loadModel('User');
+        $this->loadModel('Avatar');
+
 
     }
 
     public function index()
     {
-        $this->render('users.profil');
+        $this->render('admin.profil');
     }
 
     public function order()
@@ -28,5 +31,11 @@ class ProfilController extends AppController
     public function information()
     {
         $this->render('admin.information');
+    }
+
+    public function editProfil(){
+        $avatars = $this->Avatar->all();
+        $form = new BootstrapForm;
+        $this->render('admin.editProfile', compact('form', "avatars"));
     }
 }

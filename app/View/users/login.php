@@ -1,9 +1,4 @@
-<?php
-if ($errors) : ?>
-    <div class="alert alert-danger">
-        Identifiants Incorrects
-    </div>
-<?php endif; ?>
+
 <!-- Material form login -->
 <div class="mask rgba-gradient mt-5">
     <div class="container d-flex justify-content-center align-items-center">
@@ -13,15 +8,21 @@ if ($errors) : ?>
             <div class="col-md-12">
                 <div class="card mt-5">
                     <div class="card-body">
+                        <?php
+                        if ($errors) : ?>
+                            <div class="alert alert-danger">
+                                Identifiants Incorrects
+                            </div>
+                        <?php endif; ?>
                         <h2 class="font-weight-bold my-4 text-center font-weight-bold">
                             <strong>Se connecter</strong>
                         </h2>
                         <hr>
-                        <form action="">
+                        <form method="post">
                             <!--Card content-->
                             <div class="card-body px-lg-5 pt-0">
                                 <!-- Form -->
-                                <form class="text-center" style="color: #757575;">
+                                <form class="text-center" method="post" style="color: #757575;">
 
                                     <!-- Email -->
                                     <?= $form->input('email', 'Entrez votre email : ', 'envelope'); ?>
