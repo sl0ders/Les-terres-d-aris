@@ -20,7 +20,7 @@
                             href="<?= $product->url ?>"> <?= ucfirst($product->name) ?> </a>
                 </h4>
                 <!-- Text -->
-                <p class="description" data-desc="<?= $product->description ?>">
+                <p class="description" id="desc" data-desc="<?= $product->id ?>">
                     <?= $product->description ?>
                     <a href="#">Plus de detail</a>
                 </p>
@@ -35,7 +35,7 @@
             </form>
             <div class="text-right">
                 <label>
-                    <input value="en savoir +" type="button" class="btn btn-sm rgba-green-light">
+                    <input value="en savoir +" onclick="showDesc(<?= $product->id ?>)" type="button" class="btn btn-sm rgba-green-light">
                 </label>
             </div>
         </div>

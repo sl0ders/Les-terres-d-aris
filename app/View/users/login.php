@@ -1,5 +1,3 @@
-
-<!-- Material form login -->
 <div class="mask rgba-gradient mt-5">
     <div class="container d-flex justify-content-center align-items-center">
         <!--Grid row-->
@@ -23,11 +21,8 @@
                             <div class="card-body px-lg-5 pt-0">
                                 <!-- Form -->
                                 <form class="text-center" method="post" style="color: #757575;">
-
-                                    <!-- Email -->
-                                    <?= $form->input('email', 'Entrez votre email : ', 'envelope'); ?>
-                                    <?= $form->password('pass', 'Entrer un mot de passe', 'lock'); ?>
-
+                                    <?= $form->input("email", "Entrez votre email : ", "envelope");?>
+                                    <?= $form->password("pass", "Entrer un mot de passe", "lock") ?>
                                     <div class="d-flex justify-content-around">
                                         <div>
                                             <!-- Remember me -->
@@ -38,9 +33,9 @@
                                                     souvenir de moi</label>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="text-danger">
                                             <!-- Forgot password -->
-                                            <a href="">Mot de passe perdu ?</a>
+                                            <a href="index.php?p=users.retrieveMdp">Mot de passe perdu ?</a>
                                         </div>
                                     </div>
 
@@ -52,11 +47,11 @@
 
                                     <!-- Register -->
                                     <p>Vous n'etes pas encore membre ?
-                                        <a href="">Inscrivez vous !</a>
+                                        <a href=""> Inscrivez vous !</a>
                                     </p>
 
-                                    <!-- Social login -->
-                                    <p>Ou se connecter via : </p>
+                                    <!--Social login-->
+                                    <p> Ou se connecter via : </p>
                                     <a type="button" class="btn-floating btn-fb btn-sm">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
@@ -70,7 +65,7 @@
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </form>
-                                <!-- Form -->
+                                <!--Form -->
                             </div>
                         </form>
                     </div>
@@ -79,3 +74,4 @@
         </div>
     </div>
 </div>
+

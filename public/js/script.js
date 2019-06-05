@@ -15,14 +15,14 @@ $(document).ready(function () {
             }
         });
     });
-
-    let img = document.getElementById('avatar');
-    img.valueOf();
-
-    let btndesc = $('.btn-av');
-    btndesc.on('click', ()=>{
-        $('.description').data('desc').css('display',' block')
-    })
 });
 
+function showDesc() {
+let desc = $('#desc').data('desc');
+    if (desc.is(':visible')) {
+        desc.hide()
+    } else {
+        desc.show()
+    }
+}
 

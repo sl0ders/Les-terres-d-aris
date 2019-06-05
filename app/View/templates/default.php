@@ -56,9 +56,10 @@
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
                             <div class="nav-item avatar dropdown mt-4">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
+                                   data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile']?>"
+                                    <img src="<?= $_SESSION['imgProfile'] ?>" width="70"
                                          class="rounded-circle z-depth-0" alt="avatar image">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
@@ -105,9 +106,10 @@
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
                             <div class="nav-item avatar dropdown mt-4">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
+                                   data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile']?>"
+                                    <img src="<?= $_SESSION['imgProfile'] ?>"
                                          class="rounded-circle z-depth-0" alt="avatar image">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"

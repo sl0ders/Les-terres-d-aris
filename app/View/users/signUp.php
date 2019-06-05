@@ -1,3 +1,4 @@
+<?php $error = 'votre compte a bien etait créer'?>
 <div class="mask rgba-gradient">
     <div class="container-fluid d-flex justify-content-center align-items-center">
         <div class="card mt-5">
@@ -37,7 +38,7 @@
                             <!--Body-->
                             <?= $form->input('name', 'Entrez votre nom : ', 'user'); ?>
                             <?= $form->input('firstname', 'Entrer votre prenom : ', 'user'); ?>
-                            <?= $form->input('username', 'Entrer votre pseudo : ', 'user'); ?>
+                            <?= $form->input('username', 'Entrer votre username : ', 'user'); ?>
                             <?= $form->input('email', 'Entrez votre email : ', 'envelope'); ?>
                             <?= $form->password('pass', 'Entrer un mot de passe', 'lock'); ?>
                             <?= $form->password('repass', 'Entrer a nouveau le mot de passe', 'lock'); ?>
