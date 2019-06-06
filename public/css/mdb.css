@@ -14797,10 +14797,6 @@ table.table a.btn.btn-discord {
     padding: 0;
 }
 
-.navbar .nav-item.avatar .dropdown-toggle img {
-    height: 70px;
-}
-
 .navbar .nav-item.avatar .dropdown-toggle:after {
     display: none;
 }

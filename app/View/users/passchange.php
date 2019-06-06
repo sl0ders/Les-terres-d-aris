@@ -20,6 +20,7 @@
                             <!--Card content-->
                             <div class="card-body px-lg-5 pt-0">
                                 <!-- Form -->
+                                <?= $valid ?>
                                 <form class="text-center" method="post" style="color: #757575;">
                                     <div class="md-form">
                                         <i class="fas fa-envelope prefix"></i>

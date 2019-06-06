@@ -23,11 +23,6 @@
         <tr>
             <th scope="row" class="text-center font-weight-bold h4-responsive">Mes commandes en terminées</th>
         </tr>
-        <?php foreach($orders as $order) : ?>
-            <tr>
-                <th><?= $order->id ?> </th>
-            </tr>
-        <?php endforeach; ?>
         </tbody>
     </table>
 </Main>

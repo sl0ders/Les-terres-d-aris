@@ -1,0 +1,1 @@
+page destiné au management des stocks

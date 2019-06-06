@@ -22,7 +22,7 @@
                                 <!-- Form -->
                                 <form class="text-center" method="post" style="color: #757575;">
                                     <?= $form->input("email", "Entrez votre email : ", "envelope");?>
-                                    <?= $form->password("pass", "Entrer un mot de passe", "lock") ?>
+                                    <?= $form->password("pass", "Entrez un mot de passe", "lock") ?>
                                     <div class="d-flex justify-content-around">
                                         <div>
                                             <!-- Remember me -->

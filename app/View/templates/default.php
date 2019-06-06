@@ -55,17 +55,28 @@
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                            <div class="nav-item avatar dropdown mt-4">
+                            <div class="nav-item avatar dropdown mt-2">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile'] ?>" width="70"
-                                         class="rounded-circle z-depth-0" alt="avatar image">
+                                    <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <?php if ($_SESSION['role'] == 1) : ?>
+                                    <img src="/img/overlays/star.png" alt="etoile admin" width="50">
+                                    <?php endif ?>
                                 </a>
+                                <?php if ($_SESSION['role'] == 1) : ?>
+                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                         aria-labelledby="navbarDropdownMenuLink-55">
+                                        <a class="dropdown-item" href="index.php?p=admin.management.users">Gestion des utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=admin.management.stock">Gestion des stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=admin.management.product">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
+                                    </div>
+                                <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
-                                    <a class="dropdown-item" href="index.php?p=admin.profil.index">Mon compte</a>
-                                    <a class="dropdown-item" href="index.php?p=admin.profil.order">Mes commandes</a>
+                                    <a class="dropdown-item" href="index.php?p=profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=profil.order">Mes commandes</a>
                                     <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
@@ -105,18 +116,29 @@
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                            <div class="nav-item avatar dropdown mt-4">
+                            <div class="nav-item avatar dropdown mt-2">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile'] ?>"
-                                         class="rounded-circle z-depth-0" alt="avatar image">
+                                    <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <?php if ($_SESSION['role'] == 1) : ?>
+                                        <img src="/img/overlays/star.png" alt="etoile admin" width="50">
+                                    <?php endif ?>
                                 </a>
+                                <?php if ($_SESSION['role'] == 1) : ?>
+                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                         aria-labelledby="navbarDropdownMenuLink-55">
+                                        <a class="dropdown-item" href="index.php?p=admin.management.users">Gestion des utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=admin.management.stock">Gestion des stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=admin.management.product">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
+                                    </div>
+                                <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
-                                    <a class="dropdown-item" href="index.php?p=admin.profil.index">Mon compte</a>
-                                    <a class="dropdown-item" href="index.php?p=admin.profil.order">Mes commandes</a>
-                                    <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
+                                    <a class="dropdown-item" href="index.php?p=front.profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=front.profil.order">Mes commandes</a>
+                                    <a class="dropdown-item" href="index.php?p=front.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
                         <?php endif ?>

@@ -67,9 +67,9 @@ class UsersController extends AppController
             // Préparation du mail contenant le lien d'activation
             $destinataire = $_POST['email'];
             $sujet = "Activer votre compte";
-            $entete = "From: inscription@www.lesterresdaris.com";
+            $entete = "From: inscription@www.lesterresdaris.com\n";
             $entete .= "Reply-To: moi@domaine.com\n";
-            $entete .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            $entete .= "Content-Type: text/html; charset='utf-8\n'";
 // Le lien d'activation est composé du login(log) et de la clé(controlkey)
             $message = '
             <div class="text-center">
@@ -84,14 +84,33 @@ class UsersController extends AppController
 
             if ($result) {
                 mail($destinataire, $sujet, $message, $entete);
-                $confirm = true;
+                $valid ='<div class="alert alert-danger">Un mail vient de vous etre envoyer afin de confirmer votre adresse email</div>
+                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/index.php?p=users.login" />';
             }
         }
         $avatars = $this->Avatar->all();
         $form = new BootstrapForm($_POST);
-        $this->render('users.signUp', compact('form', 'avatars', 'confirm'));
+        $this->render('users.signUp', compact('form', 'avatars', "valid"));
     }
 
+
+    public function confirmation()
+    {
+        if (isset($_GET['username'], $_GET['controlkey']) && !empty($_GET['username']) && !empty($_GET['controlkey'])) {
+            $username = htmlspecialchars(urlencode($_GET['username']));
+            $controlkey = htmlspecialchars($_GET['controlkey']);
+            $requser = $this->User->reqUser($username, $controlkey);
+            if ($requser["nbUser"] == null) {
+                $this->User->updateUser($username, $controlkey);
+                echo'<div class="alert alert-danger">Votre compte a bien été confirmé</div>
+                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
+            } else {
+                echo "Une erreur est survenu";
+            }
+        } else {
+            header("Location: index.php");
+        }
+    }
 
     public function login()
     {
@@ -107,23 +126,6 @@ class UsersController extends AppController
         }
         $form = new BootstrapForm($_POST);
         $this->render('users.login', compact('form', 'errors'));
-    }
-
-    public function confirmation()
-    {
-        if (isset($_GET['username'], $_GET['controlkey']) && !empty($_GET['username']) && !empty($_GET['controlkey'])) {
-            $username = htmlspecialchars(urlencode($_GET['username']));
-            $controlkey = htmlspecialchars($_GET['controlkey']);
-            $requser = $this->User->reqUser($username, $controlkey);
-            if ($requser["nbUser"] == null) {
-                $this->User->updateUser($username, $controlkey);
-                echo 'Votre compte a bien été confirmé';
-            } else {
-                echo "Une erreur est survenu";
-            }
-        } else {
-            header("Location: index.php");
-        }
     }
 
     public function retrieveMdp()
@@ -143,27 +145,28 @@ class UsersController extends AppController
                 ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Récuperation de votre mot de passe";
-                $entete = "From: inscription@www.lesterresdaris.com";
+                $entete = "From:Recuperationmdp@www.lesterresdaris.com\n";
                 $entete .= "Reply-To: moi@domaine.com\n";
-                $entete .= "Content-Type: text/html; charset=\"iso-8859-1\"";
-// Le lien d'activation est composé du login(log) et de la clé(controlkey)
+                $entete .= "Content-Type: text/html; charset='utf-8\n'";
                 $message = '
-        <div class="text-center">
-            <h3>Bienvenue sur Les terres d\'Aris</h3>
-            <p>
-                Pour modifier votre mot de passe, veuillez cliquer sur le lien ci dessous
-                ou copier/coller dans votre navigateur internet.
-                <a href="http://lesterresdaris.fr/index.php?p=users.confimRetrieve&email=' . urlencode($_POST['email']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>
-            <br>
-                Ceci est un mail automatique, Merci de ne pas y répondre.
-            </p>
-        </div>';
+            <div class="text-center">
+                <h3>Bienvenue sur Les terres d\'Aris</h3>
+                <p>
+                    Pour modifier votre mot de passe, veuillez cliquer sur le lien ci dessous
+                    ou copier/coller dans votre navigateur internet.
+                    <a href="http://lesterresdaris.fr/index.php?p=users.confimRetrieve&email=' . urlencode($_POST['email']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>
+                    <br>
+                    Ceci est un mail automatique, Merci de ne pas y répondre.
+                </p>
+            </div>';
                 mail($destinataire, $sujet, $message, $entete);
+                $valid = '<div class="alert alert-danger">Un email de confirmation vient de vous etre envoyé</div>
+                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
             }
         }
 
         $form = new bootstrapForm($_POST);
-        $this->render('users.retrievemdp', compact('form'));
+        $this->render('users.retrievemdp', compact('form', 'valid'));
     }
 
     public function confimRetrieve()
@@ -177,19 +180,35 @@ class UsersController extends AppController
                 echo $this->passNotMatch;
                 echo '<script>window.location="index.php?p=users.confimRetrieve.php";</script>';
                 exit;
-            }
-            $this->User->update($_POST['email'], [
+            } else {
+                $this->User->update($_GET['email'], [
                 'hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
             ]);
+                $destinataire = $_POST['email'];
+                $sujet = "Mot de passe modifié";
+                $entete = "From:Confirmation@www.lesterresdaris.com\n";
+                $entete .= "Reply-To: moi@domaine.com\n";
+                $entete .= "Content-Type: text/html; charset='utf-8\n'";
+                $message = '
+                <div class="text-center">
+                    <h3>Bienvenue sur Les terres d\'Aris</h3>
+                    <p>
+                        Votre mot de passe a bien etait modifier
+                        http://www.lesterresdaris.fr/index.php?p=users.login
+                    <br>
+                        Ceci est un mail automatique, Merci de ne pas y répondre.
+                    </p>
+                </div>';
+                mail($destinataire, $sujet, $message, $entete);
+                $valid = '<div class="alert alert-danger">Votre compte a bien été confirmé</div>
+                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
+            }
         }
-
         $form = new bootstrapForm($_POST);
-        $this->render('users.passchange', compact('form'));
+        $this->render('users.passchange', compact('form', 'valid'));
     }
 
-
-    public
-    function disconnect()
+    public function disconnect()
     {
         session_destroy();
         echo '<script type="text/javascript">window.location="index.php";</script>';

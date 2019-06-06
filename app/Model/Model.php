@@ -73,7 +73,7 @@ class Model
         }
         $attributes[] = $id;
         $sql_parts = implode(', ', $sql_parts);
-        return $this->query("UPDATE {$this->table} SET $sql_parts WHERE id = ? ", $attributes, true);
+        return $this->query("UPDATE {$this->table} SET $sql_parts WHERE email = ? ", $attributes, true);
     }
 
     public function extract($key, $value)
