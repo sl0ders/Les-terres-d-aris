@@ -23,7 +23,7 @@ class UserModel extends Model
 
     public function updateUser($username, $controlkey)
     {
-        return $this->query("UPDATE users SET users.mailvalidation = 1, users.controlkey = null WHERE username = ? AND controlkey = ?", [$username, $controlkey]);
+        return $this->query("UPDATE users SET users.mailvalidation = 1, users.actif = 1, users.controlkey = null WHERE username = ? AND controlkey = ?", [$username, $controlkey]);
     }
 
     public function changePass($email, $controlKey)
@@ -31,9 +31,24 @@ class UserModel extends Model
         return $this->query("UPDATE users SET users.mailvalidation = 0, users.controlkey = ? WHERE email = ? AND controlkey = ?", [$email, $controlKey]);
     }
 
+
     public function emailexist($email)
     {
         return $this->query("SELECT users.email FROM users WHERE email = ?", [$email],true);
+    }
+
+    public function getInfoUser($id){
+        return $this->query("SELECT * FROM users WHERE id = ?",[$id],true);
+    }
+
+    public function updateUserBan($id)
+    {
+        return $this->query("UPDATE users SET users.mailvalidation = 0, users.actif = 2, users.controlkey = null WHERE id = ?", [$id], true);
+    }
+
+    public function updateUserdBan($id)
+    {
+        return $this->query("UPDATE users SET users.mailvalidation = 1, users.actif = 1, users.controlkey = null WHERE id = ?", [$id], true);
     }
 
 }

@@ -62,6 +62,7 @@ class UsersController extends AppController
                 'username' => htmlspecialchars($_POST['username']),
                 'imgProfil' => htmlspecialchars($_POST['imgProfil']),
                 'controlkey' => $this->controlkey,
+                'actif' => 0,
                 'hash' => htmlspecialchars(password_hash($_POST['pass'], PASSWORD_DEFAULT))
             ]);
             // Préparation du mail contenant le lien d'activation

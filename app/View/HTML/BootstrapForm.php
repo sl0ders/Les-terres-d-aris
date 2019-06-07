@@ -39,8 +39,8 @@ class BootstrapForm extends Form
     public function password($name, $label, $logo)
     {
         $logo = '<i class="fas fa-' . $logo . ' prefix"></i>';
-        $input = '<input type = "password" name ="' . $name . '" id="orangeForm-pass" value = "' . $this->getValue($name) . '" class = "form-control" > ';
-        $label = '<label for="orangeForm-'.$name.'">' . $label . '</label >';
+        $input = '<input type = "password" name ="' . $name . '" id="orangeForm-' . $name . '" value = "' . $this->getValue($name) . '" class = "form-control" > ';
+        $label = '<label for="orangeForm-' . $name . '">' . $label . '</label >';
         return $this->surround($logo . $input . $label);
     }
 
@@ -80,5 +80,12 @@ class BootstrapForm extends Form
         }
         $input .= '</select>';
         return $this->surround($label . $input);
+    }
+
+    public function redButton($name)
+    {
+        return '<span class="table-remove">
+              <input type="button" name="' .$name .'" value="' . $this->getValue($name) . '" class="btn btn-danger btn-rounded btn-sm my-0">
+              </span>';
     }
 }

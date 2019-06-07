@@ -14,6 +14,7 @@ class ProductsController extends AppController
 
     public function index()
     {
+
         $products = $this->Product->All();
         $this->render('front.index', compact('products'));
     }

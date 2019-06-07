@@ -8,6 +8,6 @@ class UserEntity extends Entity
 {
     public function getUrl()
     {
-        return 'index.php?p=user.show&id=' . $this->id;
+        return 'index.php?p=admin.management.show&id=' . $this->id;
     }
 }
