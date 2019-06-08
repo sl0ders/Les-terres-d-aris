@@ -6,6 +6,6 @@ App::load();
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
-    $page = 'article.admin';
+    $page = 'Products.Admin';
 }
 

@@ -953,7 +953,7 @@
     <table id="243" parent="13" name="products">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="244" parent="13" name="stock">
+    <table id="244" parent="13" name="stocks">
       <Engine>InnoDB</Engine>
     </table>
     <table id="245" parent="13" name="users">
@@ -1118,7 +1118,7 @@ stock_id</ColNames>
     <foreign-key id="274" parent="243" name="fk_Product_stock">
       <ColNames>stock_id</ColNames>
       <RefSchemaName>projet_5</RefSchemaName>
-      <RefTableName>stock</RefTableName>
+      <RefTableName>stocks</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="275" parent="244" name="id">
@@ -1133,7 +1133,7 @@ stock_id</ColNames>
       <DataType>varchar(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="244" name="quantité">
+    <column id="277" parent="244" name="quantity">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -1197,29 +1197,31 @@ stock_id</ColNames>
     </column>
     <column id="289" parent="245" name="role">
       <Position>7</Position>
-      <DataType>int(1)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="245" name="imgProfil">
+    <column id="290" parent="245" name="actif">
       <Position>8</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="245" name="mailvalidation">
+      <Position>9</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="245" name="imgProfil">
+      <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="245" name="controlkey">
-      <Position>9</Position>
+    <column id="293" parent="245" name="controlkey">
+      <Position>11</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="292" parent="245" name="actif">
-      <Position>10</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="293" parent="245" name="mailvalidation">
-      <Position>11</Position>
-      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="294" parent="245" name="PRIMARY">

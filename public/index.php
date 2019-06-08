@@ -6,14 +6,14 @@ App::load();
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
-    $page = 'products.index';
+    $page = 'Products.index';
 }
 $page = explode('.', $page);
-if($page[0] == 'admin'){
-    $controller = '\App\Controllers\admin\\' . ucfirst($page[1]) . 'Controller';
+if($page[0] == 'Admin'){
+    $controller = '\App\Controllers\Admin\\' . ucfirst($page[1]) . 'Controller';
     $action = $page[2];
-} elseif ('front') {
-    $controller = '\App\Controllers\front\\' . ucfirst($page[0]) . 'Controller';
+} elseif ('Front') {
+    $controller = '\App\Controllers\Front\\' . ucfirst($page[0]) . 'Controller';
     $action = $page[1];
 }
 

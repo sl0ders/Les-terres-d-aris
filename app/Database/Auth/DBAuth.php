@@ -38,17 +38,28 @@ class DBAuth
         return false;
     }
 
-    public function logged()
+    public function loggedUser()
     {
-        return isset($_SESSION['auth']);
+            return $_SESSION['role'] == 0;
+    }
+    public function loggedAdmin()
+    {
+            return $_SESSION['role'] == 1;
     }
 
     public function getUserId()
     {
-        if ($this->logged()) {
-            return $_SESSION['auth'];
+        if ($this->loggedUser()) {
+            return $_SESSION['role'] == 0;
+        }
+        return false;
+    }
+    public function getAdminId()
+    {
+        if ($this->loggedUser()) {
+            return $_SESSION['role'] == 1;
         }
         return false;
     }
 
-}
+};

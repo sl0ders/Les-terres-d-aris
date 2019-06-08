@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controllers\front;
+namespace App\Controllers\Front;
 
 
 use App\View\HTML\BootstrapForm;
@@ -23,19 +23,15 @@ class ProfilController extends AppController
         $this->render('users.profil');
     }
 
-    public function order()
+    public function show()
     {
-        $this->render('front.order');
+        $this->render('Front.Users.show');
     }
-
-    public function information()
-    {
-        $this->render('front.information');
-    }
-
     public function editProfil(){
         $avatars = $this->Avatar->all();
         $form = new BootstrapForm;
-        $this->render('front.editProfile', compact('form', "avatars"));
+        $this->render('users.editProfile', compact('form', "avatars"));
     }
+
+
 }

@@ -43,12 +43,12 @@ class UserModel extends Model
 
     public function updateUserBan($id)
     {
-        return $this->query("UPDATE users SET users.mailvalidation = 0, users.actif = 2, users.controlkey = null WHERE id = ?", [$id], true);
+        return $this->query("UPDATE users SET users.mailvalidation = 0, users.actif = 2, users.controlkey = 0 WHERE id = ?", [$id], true);
     }
 
     public function updateUserdBan($id)
     {
-        return $this->query("UPDATE users SET users.mailvalidation = 1, users.actif = 1, users.controlkey = null WHERE id = ?", [$id], true);
+        return $this->query("UPDATE users SET users.mailvalidation = 1, users.actif = 1, users.controlkey = 0 WHERE id = ?", [$id], true);
     }
 
 }

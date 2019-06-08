@@ -9,14 +9,21 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Bootstrap core CSS -->
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="../../../css/mdb.css" rel="stylesheet">
+    <link href="css/mdb.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="scss/sass/style.scss">
+    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=t8wsrw0o08y3nbn52u7y9sj2h0ec3r664cralpe9txjj4yhc"></script>
+    <script>tinymce.init({
+            mode: "exact",
+            elements: "active"
+            });
+    </script>
 </head>
 <body>
 <header class="navigation1">
+
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong scrolling-navbar">
         <div class="container-fluid">
             <button class="navbar-toggler rgba-green-strong" type="button" data-toggle="collapse"
@@ -55,28 +62,27 @@
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                            <div class="nav-item avatar dropdown mt-2">
+                            <div class="avatar dropdown mt-2">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['role'] == 1) : ?>
-                                    <img src="/img/overlays/star.png" alt="etoile admin" width="50">
+                                    <img src="img/overlays/star.png" alt="etoile admin" style="height: 65px !important;">
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
-                                        <a class="dropdown-item" href="index.php?p=admin.management.users">Gestion des utilisateurs</a>
-                                        <a class="dropdown-item" href="index.php?p=admin.management.stock">Gestion des stocks</a>
-                                        <a class="dropdown-item" href="index.php?p=admin.management.product">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
                                     <a class="dropdown-item" href="index.php?p=profil.index">Mon compte</a>
-                                    <a class="dropdown-item" href="index.php?p=profil.order">Mes commandes</a>
                                     <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
@@ -116,29 +122,28 @@
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                            <div class="nav-item avatar dropdown mt-2">
+                            <div class="avatar dropdown mt-2">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['role'] == 1) : ?>
-                                        <img src="/img/overlays/star.png" alt="etoile admin" width="50">
+                                        <img src="img/overlays/star.png" alt="etoile admin" width="50">
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
-                                        <a class="dropdown-item" href="index.php?p=admin.management.users">Gestion des utilisateurs</a>
-                                        <a class="dropdown-item" href="index.php?p=admin.management.stock">Gestion des stocks</a>
-                                        <a class="dropdown-item" href="index.php?p=admin.management.product">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
-                                    <a class="dropdown-item" href="index.php?p=front.profil.index">Mon compte</a>
-                                    <a class="dropdown-item" href="index.php?p=front.profil.order">Mes commandes</a>
-                                    <a class="dropdown-item" href="index.php?p=front.disconnect">Se déconnecter</a>
+                                    <a class="dropdown-item" href="index.php?p=Front.profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=Front.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
                         <?php endif ?>

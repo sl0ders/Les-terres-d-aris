@@ -47,23 +47,8 @@
 
                                     <!-- Register -->
                                     <p>Vous n'etes pas encore membre ?
-                                        <a href=""> Inscrivez vous !</a>
+                                        <a href="index?p=users.signUp"> Inscrivez vous !</a>
                                     </p>
-
-                                    <!--Social login-->
-                                    <p> Ou se connecter via : </p>
-                                    <a type="button" class="btn-floating btn-fb btn-sm">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a type="button" class="btn-floating btn-tw btn-sm">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a type="button" class="btn-floating btn-li btn-sm">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                    <a type="button" class="btn-floating btn-git btn-sm">
-                                        <i class="fab fa-github"></i>
-                                    </a>
                                 </form>
                                 <!--Form -->
                             </div>

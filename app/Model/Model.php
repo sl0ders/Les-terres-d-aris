@@ -9,7 +9,6 @@ class Model
     protected $table;
     protected $db;
 
-
     public function __construct(MysqlDatabase $db)
     {
         $this->db = $db;

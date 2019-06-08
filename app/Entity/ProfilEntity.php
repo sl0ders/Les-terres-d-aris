@@ -1,10 +1,7 @@
 <?php
-
-
 namespace App\Entity;
 
-
-class ProfilEntity
+class ProfilEntity extends Entity
 {
 
 }

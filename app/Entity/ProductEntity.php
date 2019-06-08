@@ -6,14 +6,17 @@ namespace App\Entity;
 
 class ProductEntity extends Entity
 {
-    public function getUrl()
+    public function getUrlFront()
     {
-        return 'index.php?p=products.show&id=' . $this->id;
+        return 'index.php?p=Products.show&id=' . $this->id;
     }
-
+    public function getUrlAdmin()
+    {
+        return 'index.php?p=Admin.Products.show&id=' . $this->id;
+    }
     public function getExtract()
     {
-        $html = '<p>' . substr($this->content, 0, 200) . '...</p>';
+        $html = '<p>' . substr($this->description, 0, 200) . '...</p>';
         $html .= '<p><a href="' . $this->getUrl() . '">voir la suite</a></p>';
         return $html;
     }

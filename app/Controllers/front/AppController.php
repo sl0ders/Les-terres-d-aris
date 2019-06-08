@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controllers\front;
+namespace App\Controllers\Front;
 
 
 use App;
@@ -14,7 +14,7 @@ class AppController extends Controller
     protected $mailExist = '<script type="text/javascript">' . 'alert("Erreur : Cette adresse de mail est déjà utilisée.");' . '</script>';
     protected $usernameExist = '<script type="text/javascript">' . 'alert("Erreur : Ce pseudo est déjà utilisée.");' . '</script>';
     protected $errorSizeMin = '<script type="text/javascript">' . 'alert("Erreur : Il vous faut entrer au moin 3 caractere");' . '</script>';
-    protected $missCase = '<script type="text/javascript">' . 'alert("Erreur : Un champ n\'a pas etait remplit");' . '</script>';
+    protected $missCase = '<script type="text/javascript">' . 'alert("Erreur : Un champ n\'a pas été remplit");' . '</script>';
     protected $numberExist = '<script type="text/javascript">' . 'alert("Erreur : Le numero de l\'article existe deja")'.'</script>';
     protected $passNotMatch = '<script type="text/javascript">' . 'alert("Erreur : Les mots de passes ne correspondent pas")'.'</script>';
     protected $emailFormat = '<script type="text/javascript">' . 'alert("Erreur : l\'adresse email n\'est pas au bon format")'.'</script>';

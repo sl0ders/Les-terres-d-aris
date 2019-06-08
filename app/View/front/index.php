@@ -4,7 +4,7 @@
         <div class="text-center card card-cascade narrower text-center content p-auto mt-5 ml-3 mb-5">
             <!-- Card image -->
             <div class="view view-cascade overlay">
-                <a href="<?= $product->url ?>">
+                <a href="<?= $product->urlFront ?>">
                     <img class="card-img-top" width="70" height="200" style="z-index:2" src="img/<?= $product->img ?>"
                          alt="' . $name . '">
                 </a>
@@ -17,10 +17,11 @@
                 <h5 class="green-text pb-2 pt-1">Prix : <?= $product->price ?>€/kg</h5>
                 <!-- Title -->
                 <h4 class="font-weight-bold card-title"><a
-                            href="<?= $product->url ?>"> <?= ucfirst($product->name) ?> </a>
+                            href="<?= $product->urlFront ?>"> <?= ucfirst($product->name) ?> </a>
                 </h4>
                 <!-- Text -->
                 <p class="description" id="desc" data-desc="<?= $product->id ?>">
+
                     <?= $product->description ?>
                     <a href="#">Plus de detail</a>
                 </p>

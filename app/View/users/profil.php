@@ -21,7 +21,7 @@
                                                     </h3>
                                                     <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                         editez vos factures</p>
-                                                    <a href="index.php?p=admin.profil.order">
+                                                    <a href="index.php?p=profil.order">
                                                         <button class="btn btn-outline-white btn-sm">
                                                             <i class="fas fa-clone left"></i> Entrer
                                                         </button>
@@ -30,7 +30,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 mb-4">
                                         <div class="card card-image"
                                              style="background-image: url('/img/params.jpg');">
@@ -42,7 +41,7 @@
                                                     </h3>
                                                     <p>Editez vos information, (mot de passe, nom d'utilisateur, mode de
                                                         payment...)</p>
-                                                    <a href="index.php?p=admin.profil.information"
+                                                    <a href="index.php?p=profil.show"
                                                        class="btn btn-outline-white btn-sm">
                                                         <i class="fas fa-clone left"></i> Entrer</a>
                                                 </div>
@@ -60,7 +59,7 @@
                                                         </h3>
                                                         <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                             editez vos factures</p>
-                                                        <a href="index.php?p=admin.profil.order">
+                                                        <a href="index.php?p=profil.order">
                                                             <button class="btn btn-outline-white btn-sm">
                                                                 <i class="fas fa-clone left"></i> Entrer
                                                             </button>
@@ -79,7 +78,7 @@
                                                         </h3>
                                                         <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                             editez vos factures</p>
-                                                        <a href="index.php?p=admin.profil.order">
+                                                        <a href="index.php?p=Front.profil.order">
                                                             <button class="btn btn-outline-white btn-sm">
                                                                 <i class="fas fa-clone left"></i> Entrer
                                                             </button>
@@ -98,7 +97,7 @@
                                                         </h3>
                                                         <p>Retrouvez ici l'historique complet de toutes vos commandes et
                                                             editez vos factures</p>
-                                                        <a href="index.php?p=admin.profil.order">
+                                                        <a href="index.php?p=Front.profil.order">
                                                             <button class="btn btn-outline-white btn-sm">
                                                                 <i class="fas fa-clone left"></i> Entrer
                                                             </button>

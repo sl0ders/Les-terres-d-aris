@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\front;
+namespace App\Controllers\Front;
 
 use App;
 use App\Database\Auth\DBAuth;
@@ -85,7 +85,7 @@ class UsersController extends AppController
 
             if ($result) {
                 mail($destinataire, $sujet, $message, $entete);
-                $valid ='<div class="alert alert-danger">Un mail vient de vous etre envoyer afin de confirmer votre adresse email</div>
+                $valid = '<div class="alert alert-danger">Un mail vient de vous etre envoyer afin de confirmer votre adresse email</div>
                 <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/index.php?p=users.login" />';
             }
         }
@@ -103,7 +103,7 @@ class UsersController extends AppController
             $requser = $this->User->reqUser($username, $controlkey);
             if ($requser["nbUser"] == null) {
                 $this->User->updateUser($username, $controlkey);
-                echo'<div class="alert alert-danger">Votre compte a bien été confirmé</div>
+                echo '<div class="alert alert-danger">Votre compte a bien été confirmé</div>
                 <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
             } else {
                 echo "Une erreur est survenu";
@@ -183,8 +183,8 @@ class UsersController extends AppController
                 exit;
             } else {
                 $this->User->update($_GET['email'], [
-                'hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
-            ]);
+                    'hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
+                ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Mot de passe modifié";
                 $entete = "From:Confirmation@www.lesterresdaris.com\n";
@@ -216,4 +216,10 @@ class UsersController extends AppController
         exit;
     }
 
+    public function showUser()
+    {
+        $infoUser = $this->User->getInfoUser($_GET['id']);
+        $form = new bootstrapForm();
+        $this->render('users.profil.showUser', compact('form', 'infoUser'));
+    }
 }
