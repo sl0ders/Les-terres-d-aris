@@ -775,7 +775,7 @@
 		 */
 		this.fnSort = function( aaSort )
 		{
-			this.api( true ).order( aaSort ).draw();
+			this.api( true ).index( aaSort ).draw();
 		};
 
 
@@ -797,7 +797,7 @@
 		 */
 		this.fnSortListener = function( nNode, iColumn, fnCallback )
 		{
-			this.api( true ).order.listener( nNode, iColumn, fnCallback );
+			this.api( true ).index.listener( nNode, iColumn, fnCallback );
 		};
 
 
@@ -1185,7 +1185,7 @@
 					var col = oSettings.aoColumns[i];
 
 					if ( col.mData === i ) {
-						var sort = a( cell, 'sort' ) || a( cell, 'order' );
+						var sort = a( cell, 'sort' ) || a( cell, 'index.php' );
 						var filter = a( cell, 'filter' ) || a( cell, 'search' );
 
 						if ( sort !== null || filter !== null ) {
@@ -1233,7 +1233,7 @@
 								sortedColumns[ val.src ] = val.dir;
 							} );
 
-							_fnCallbackFire( oSettings, null, 'order', [oSettings, aSort, sortedColumns] );
+							_fnCallbackFire( oSettings, null, 'index.php', [oSettings, aSort, sortedColumns] );
 							_fnSortAria( oSettings );
 						}
 					} );
@@ -1813,7 +1813,7 @@
 		_fnCompatMap( init, 'orderMulti',    'bSortMulti' );
 		_fnCompatMap( init, 'orderClasses',  'bSortClasses' );
 		_fnCompatMap( init, 'orderCellsTop', 'bSortCellsTop' );
-		_fnCompatMap( init, 'order',         'aaSorting' );
+		_fnCompatMap( init, 'index.php',         'aaSorting' );
 		_fnCompatMap( init, 'orderFixed',    'aaSortingFixed' );
 		_fnCompatMap( init, 'paging',        'bPaginate' );
 		_fnCompatMap( init, 'pagingType',    'sPaginationType' );
@@ -6391,9 +6391,9 @@
 			}
 
 			// Order
-			if ( s.order !== undefined ) {
+			if ( s.index !== undefined ) {
 				settings.aaSorting = [];
-				$.each( s.order, function ( i, col ) {
+				$.each( s.index, function (i, col ) {
 					settings.aaSorting.push( col[0] >= columns.length ?
 						[ 0, col[1] ] :
 						col
@@ -7811,7 +7811,7 @@
 
 		var
 			search = opts.search,  // none, applied, removed
-			order  = opts.order,   // applied, current, index (original - compatibility with 1.9)
+			order  = opts.index,   // applied, current, index (original - compatibility with 1.9)
 			page   = opts.page;    // all, current
 
 		if ( _fnDataSource( settings ) == 'ssp' ) {
@@ -9005,14 +9005,14 @@
 	 * @param {function} [callback] callback function when sort is run
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'order.listener()', function ( node, column, callback ) {
+	_api_register( 'index.php.listener()', function (node, column, callback ) {
 		return this.iterator( 'table', function ( settings ) {
 			_fnSortAttachListener( settings, node, column, callback );
 		} );
 	} );
 
 
-	_api_register( 'order.fixed()', function ( set ) {
+	_api_register( 'index.php.fixed()', function (set ) {
 		if ( ! set ) {
 			var ctx = this.context;
 			var fixed = ctx.length ?
@@ -14849,7 +14849,7 @@
 				// `DT` namespace will allow the event to be removed automatically
 				// on destroy, while the `dt` namespaced event is the one we are
 				// listening for
-				$(settings.nTable).on( 'order.dt.DT', function ( e, ctx, sorting, columns ) {
+				$(settings.nTable).on( 'index.php.dt.DT', function (e, ctx, sorting, columns ) {
 					if ( settings !== ctx ) { // need to check this this is the host
 						return;               // table, not a nested one
 					}
@@ -14880,7 +14880,7 @@
 					.appendTo( cell );
 
 				// Attach a sort listener to update on sort
-				$(settings.nTable).on( 'order.dt.DT', function ( e, ctx, sorting, columns ) {
+				$(settings.nTable).on( 'index.php.dt.DT', function (e, ctx, sorting, columns ) {
 					if ( settings !== ctx ) {
 						return;
 					}
@@ -15176,7 +15176,7 @@
 
 	/**
 	 * Order event, fired when the ordering applied to the table is altered.
-	 *  @name DataTable#order.dt
+	 *  @name index.php.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
 	 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}

@@ -33,7 +33,7 @@ class BootstrapForm extends Form
     public function textarea($name, $label, $id)
     {
         return $this->surround(
-            '<label>' . $label . ' </label ><textarea id="' . $id . '" name = "' . $name . '" class = "form-control">' . $this->getValue($name) . '</textarea>');
+            '<label>' . $label . ' </label ><textarea style="padding: 20px" cols="12" rows="12" id="' . $id . '" name = "' . $name . '" class = "form-control">' . $this->getValue($name) . '</textarea>');
     }
 
     public function password($name, $label, $logo)
@@ -85,7 +85,7 @@ class BootstrapForm extends Form
     public function redButton($name)
     {
         return '<span class="table-remove">
-              <input type="button" name="' .$name .'" value="' . $this->getValue($name) . '" class="btn btn-danger btn-rounded btn-sm my-0">
+              <input type="button" name="' . $name . '" value="' . $this->getValue($name) . '" class="btn btn-danger btn-rounded btn-sm my-0">
               </span>';
     }
 }

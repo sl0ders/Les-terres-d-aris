@@ -3,29 +3,15 @@
         <div class="card mt-5">
             <div class="card-body" style="width: 75vw">
                 <h2 class="font-weight-bold my-4 text-center font-weight-bold">
-                    <strong>Modification de vos information</strong>
+                    <strong>Modification de vos informations</strong>
                 </h2>
                 <hr>
                 <form method="post" id="loginForm">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="row pb-4 d-flex justify-content-center mb-4">
-                                <h4 class="mt-3 mr-4">
-                                    <strong>S'inscrire avec</strong>
-                                </h4>
-                                <div class="inline-ul text-center d-flex justify-content-center">
-                                    <a class="p-2 m-2 fa-lg tw-ic">
-                                        <i class="fab fa-twitter fa-lg green-text"></i>
-                                    </a>
-                                    <a class="p-2 m-2 fa-lg li-ic">
-                                        <i class="fab fa-linkedin-in fa-lg green-text"> </i>
-                                    </a>
-                                    <a class="p-2 m-2 fa-lg ins-ic">
-                                        <i class="fab fa-instagram fa-lg green-text"> </i>
-                                    </a>
-                                </div>
                                 <h4 class="mt-3 ml-4">
-                                    <strong>Ou:</strong>
+                                    <strong>Editez votre profil</strong>
                                 </h4>
                             </div>
                             <!--Body-->

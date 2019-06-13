@@ -22,7 +22,7 @@
     </script>
 </head>
 <body>
-<header class="navigation1">
+<header class="navig" id="nav1">
 
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong scrolling-navbar">
         <div class="container-fluid">
@@ -52,11 +52,13 @@
                                aria-label="Search">
                     </li>
                     <li class="nav-item row caddie">
-                        <a class="nav-link" href="index.php?p=cart.index">
+                        <?php if ($_SESSION['role']== 0): ?>
+                            <a class="nav-link" href="index.php?p=cart.index">
+                                <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
+                                     id="animated-img1"><span><?= array_sum($_SESSION['cart']); ?></span>
+                            </a>
+                        <?php endif ?>
 
-                            <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
-                                 id="animated-img1">
-                        </a>
                         <?php if (!isset($_SESSION['auth'])) : ?>
                             <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
@@ -68,7 +70,7 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['role'] == 1) : ?>
-                                    <img src="img/overlays/star.png" alt="etoile admin" style="height: 65px !important;">
+                                    <img src="img/overlays/star.png" alt="etoile admin" width="30" ">
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['role'] == 1) : ?>
@@ -77,6 +79,7 @@
                                         <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
                                         <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
                                         <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des commandes</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
@@ -93,7 +96,7 @@
         </div>
     </nav>
 </header>
-<header class="navigation2">
+<header class="navig" id="nav2">
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong fixed-top scrolling-navbar">
         <div class="container-fluid">
             <button class="navbar-toggler rgba-green-strong" type="button" data-toggle="collapse"
@@ -112,11 +115,8 @@
                         <input class="form-control search" type="text" placeholder="Rechercher un produit"
                                aria-label="Search">
                     </li>
+
                     <li class="nav-item row caddie2">
-                        <a class="nav-link" href="index.php?p=cart.index">
-                            <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
-                                 id="animated-img1">
-                        </a>
                         <?php if (!isset($_SESSION['auth'])) : ?>
                             <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
@@ -128,22 +128,23 @@
                                    aria-haspopup="true" aria-expanded="false">
                                     <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['role'] == 1) : ?>
-                                        <img src="img/overlays/star.png" alt="etoile admin" width="50">
+                                        <img src="img/overlays/star.png" alt="etoile admin" width="30">
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['role'] == 1) : ?>
-                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-default"
                                          aria-labelledby="navbarDropdownMenuLink-55">
                                         <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
                                         <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
                                         <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des commandes</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
                                     <a class="dropdown-item" href="index.php?p=Front.profil.index">Mon compte</a>
-                                    <a class="dropdown-item" href="index.php?p=Front.disconnect">Se déconnecter</a>
+                                    <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
                         <?php endif ?>

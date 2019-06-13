@@ -9174,7 +9174,7 @@ table.table a.btn.btn-black {
 
 .navbar.navbar-dark .breadcrumb .nav-item .nav-link:hover,
 .navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(85, 136, 77, 0.81);
 }
 
 .navbar.navbar-dark .breadcrumb .nav-item.active > .nav-link,
@@ -9184,7 +9184,7 @@ table.table a.btn.btn-black {
 
 .navbar.navbar-dark .breadcrumb .nav-item.active > .nav-link:hover,
 .navbar.navbar-dark .navbar-nav .nav-item.active > .nav-link:hover {
-    color: #fff;
+    color: rgba(85, 136, 77, 0.81);
 }
 
 .navbar.navbar-dark .navbar-toggler {
@@ -13716,15 +13716,15 @@ table.table a.btn.btn-discord {
 }
 
 .pills-secondary .show > .nav-link {
-    background-color: #aa66cc !important;
+    background-color: #3b6e36 !important;
 }
 
 .pills-secondary .nav-link.active {
-    background-color: #aa66cc !important;
+    background-color: #3b6e36 !important;
 }
 
 .tabs-secondary {
-    background-color: #aa66cc !important;
+    background-color: #3b6e36 !important;
 }
 
 .pills-elegant .show > .nav-link {
@@ -14541,7 +14541,7 @@ table.table a.btn.btn-discord {
 .dropright .dropdown-menu.dropdown-secondary .dropdown-item:hover,
 .dropright .dropdown-menu.dropdown-secondary .dropdown-item:active,
 .dropright .dropdown-menu.dropdown-secondary .dropdown-item.active {
-    background-color: #aa66cc !important;
+    background-color: #3b6e36 !important;
     -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     -webkit-border-radius: 0.125rem;

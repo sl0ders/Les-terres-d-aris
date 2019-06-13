@@ -11,6 +11,7 @@ class UsersController extends AppController
 {
     private $longueurKey = 15;
     private $controlkey = "";
+    private $error;
 
     public function __construct()
     {
@@ -22,6 +23,7 @@ class UsersController extends AppController
     public function signUp()
     {
         if (!empty($_POST)) {
+            $error = true;
             if (empty($_POST['email']) || empty($_POST['name']) || empty($_POST['firstname']) || empty($_POST['username']) || empty($_POST['pass']) || empty($_POST['repass']) || empty($_POST['imgProfil'])) {
                 echo $this->missCase;
                 echo '<script>window.location="index.php?p=users.signUp.php";</script>';
@@ -46,7 +48,7 @@ class UsersController extends AppController
                 exit;
             }
 
-            if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $_POST['email'])) {
+            if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,7}$#i", $_POST['email'])) {
                 echo $this->emailFormat;
                 echo '<script>window.location="index.php?p=users.signUp.php";</script>';
                 exit;
@@ -68,15 +70,15 @@ class UsersController extends AppController
             // Préparation du mail contenant le lien d'activation
             $destinataire = $_POST['email'];
             $sujet = "Activer votre compte";
-            $entete = "From: inscription@www.lesterresdaris.com\n";
-            $entete .= "Reply-To: moi@domaine.com\n";
+            $entete = "From: www.lesterresdaris.fr\n";
+            $entete .= "Reply-To: lesterresdaris.fr\n";
             $entete .= "Content-Type: text/html; charset='utf-8\n'";
 // Le lien d'activation est composé du login(log) et de la clé(controlkey)
             $message = '
             <div class="text-center">
             <h3>Bienvenue sur Les terres d\'Aris</h3>
              <p>
-             Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+             Pour activer votre compte, veuillez cliquer sur le lien ci dessous <br>
              ou copier/coller dans votre navigateur internet.
              <a href="http://lesterresdaris.fr/index.php?p=users.confirmation&username=' . urlencode($_POST['username']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>             
              Ceci est un mail automatique, Merci de ne pas y répondre.
@@ -84,14 +86,15 @@ class UsersController extends AppController
              </div>';
 
             if ($result) {
+                $error = false;
                 mail($destinataire, $sujet, $message, $entete);
-                $valid = '<div class="alert alert-danger">Un mail vient de vous etre envoyer afin de confirmer votre adresse email</div>
+                echo '<div class="alert alert-danger">Un mail vient de vous etre envoyer afin de confirmer votre adresse email</div>
                 <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/index.php?p=users.login" />';
             }
         }
         $avatars = $this->Avatar->all();
         $form = new BootstrapForm($_POST);
-        $this->render('users.signUp', compact('form', 'avatars', "valid"));
+        $this->render('users.signUp', compact('form', 'avatars', "valid", 'error'));
     }
 
 
@@ -146,8 +149,8 @@ class UsersController extends AppController
                 ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Récuperation de votre mot de passe";
-                $entete = "From:Recuperationmdp@www.lesterresdaris.com\n";
-                $entete .= "Reply-To: moi@domaine.com\n";
+                $entete = "From:www.lesterresdaris.fr\n";
+                $entete .= "Reply-To: lesterresdaris.fr\n";
                 $entete .= "Content-Type: text/html; charset='utf-8\n'";
                 $message = '
             <div class="text-center">
@@ -166,7 +169,7 @@ class UsersController extends AppController
             }
         }
 
-        $form = new bootstrapForm($_POST);
+        $form = new bootstrapForm($_SESSION);
         $this->render('users.retrievemdp', compact('form', 'valid'));
     }
 
@@ -187,8 +190,8 @@ class UsersController extends AppController
                 ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Mot de passe modifié";
-                $entete = "From:Confirmation@www.lesterresdaris.com\n";
-                $entete .= "Reply-To: moi@domaine.com\n";
+                $entete = "From:www.lesterresdaris.fr\n";
+                $entete .= "Reply-To: lesterresdaris@.fr\n";
                 $entete .= "Content-Type: text/html; charset='utf-8\n'";
                 $message = '
                 <div class="text-center">

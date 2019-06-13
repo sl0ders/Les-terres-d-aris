@@ -32,6 +32,7 @@ class DBAuth
                 $_SESSION['email'] = $user->email;
                 $_SESSION['key'] = $user->controlKey;
                 $_SESSION['role'] = $user->role;
+                $_SESSION['cart'] = [];
                 return true;
             }
         }

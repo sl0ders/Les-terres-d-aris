@@ -2,11 +2,6 @@
 ?>
 
 <div class="card">
-    <div class="text-center">
-        <a href="index.php?p=Admin.users.index">
-            <button type="button" class="btn btn-primary">Retour a la gestion des utilisateurs</button>
-        </a>
-    </div>
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Information utilisateur</h3>
     <div class="card-body ">
         <div id="table" class="table-editable">
@@ -39,8 +34,8 @@
                         } ?></td>
                 </tr>
                 <tr>
-                    <th scope="row" class="font-weight-bolder">MOT DE PASSE :</th>
-                    <td>******</td>
+                    <th scope="row" class="font-weight-bolder">IMG UTIL. :</th>
+                    <td><img src="<?= $infoUser->imgProfil ?>" alt="imgProfile"></td>
                 </tr>
 
                 </tbody>
@@ -62,6 +57,11 @@
                     </form>
                 <?php endif; ?>
             </table>
+            <div class="text-center">
+                <a href="index.php?p=Admin.users.index">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-angle-double-left"></i></button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -1,4 +1,3 @@
-<?php $error = 'votre compte a bien etait créer' ?>
 <div class="mask rgba-gradient">
     <div class="container-fluid d-flex justify-content-center align-items-center">
         <div class="card mt-5">
@@ -10,8 +9,6 @@
                 <form method="post" id="loginForm">
                     <div class="row">
                         <div class="col-md-5">
-                            <?= $valid ?>
-
                             <div class="row pb-4 d-flex justify-content-center mb-4">
 
                                 <h4 class="mt-3 mr-4">

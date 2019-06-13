@@ -33,5 +33,9 @@ class ProfilController extends AppController
         $this->render('users.editProfile', compact('form', "avatars"));
     }
 
+    public function orders(){
+        $this->render('Front.Users.orders');
+    }
+
 
 }

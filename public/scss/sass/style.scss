@@ -121,12 +121,12 @@ footer a {
   margin-top: -150px;
 }
 
-.navigation2, .navigation1{
+.navig{
   position:relative;
-  z-index: 999999;
+  z-index: 200;
 }
 
-.navigation2{
+#nav2{
   display: none;
 }
 /* Only for snippet */
@@ -138,10 +138,11 @@ footer a {
   height: 600px;
 }
 
-.description {
+#desc {
   margin: 0 auto;
   width: 170px;
   bottom: 200px;
+  display: none;
 }
 
 #idval{
@@ -231,6 +232,12 @@ footer a {
       margin-top: -.3rem;
     }
   }
+}
+
+.minicount{
+  border: 2px solid green;
+  border-radius: 10%;
+  background-color: rgba(33, 155, 12, 0.5);
 }
 
 

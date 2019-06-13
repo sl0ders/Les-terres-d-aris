@@ -22,4 +22,13 @@ class ProductModel extends Model
         $sql_parts = implode(', ', $sql_parts);
         return $this->query("UPDATE {$this->table} SET $sql_parts WHERE id = ? ", $attributes, true);
     }
+
+    public function verifName($name)
+    {
+        $this->query('SELECT 1 FROM products WHERE name = ? LIMIT 1', [$name]);
+    }
+    public function verifId($id)
+    {
+        $this->query('SELECT 1 FROM products WHERE stock_id = ? LIMIT 1', [$id]);
+    }
 }
