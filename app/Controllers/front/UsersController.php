@@ -108,8 +108,9 @@ class UsersController extends AppController
                 $this->User->updateUser($username, $controlkey);
                 echo '<div class="alert alert-danger">Votre compte a bien été confirmé</div>
                 <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
-            } else {
-                echo "Une erreur est survenu";
+            } elseif ($this->User->finds($_GET['controlkey']) === null) {
+                echo '<div class="alert alert-danger">clef de controle érronée</div>
+                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/"/>';
             }
         } else {
             header("Location: index.php");

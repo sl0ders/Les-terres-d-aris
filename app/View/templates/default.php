@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
@@ -43,13 +43,13 @@
                         <?php } else { ?>
                     <li class="nav-item ml-5 pl-5">
                         <?php } ?>
-                        <p></p>
-                        <p class="speach ml-5 pl-5">Les terres d'Aris <br> Mangez <span> BON </span> mangez
+                        <p class="speach text-center">Les terres d'Aris <br> Mangez <span> BON </span> mangez
                             <span> BIO</span> !!
                         </p>
-                        <input class="form-control search ml-5 mt-5" style="border: 2px solid rgba(12,54,64,0.5);"
-                               type="text" placeholder="Rechercher un produit"
-                               aria-label="Search">
+                        <form method="post" class="text-center">
+                            <input class="form-control search" name="terme" type="text" placeholder="Rechercher un produit" aria-label="Search">
+                            <button class="btn btn-sm btn-green rounded" name="search" type="submit">Rechercher un produit</button>
+                        </form>
                     </li>
                     <li class="nav-item row caddie">
                         <?php if ($_SESSION['role']== 0): ?>
@@ -112,8 +112,10 @@
                         </a>
                     </li>
                     <li class="nav-item ml-5 pl-5">
-                        <input class="form-control search" type="text" placeholder="Rechercher un produit"
-                               aria-label="Search">
+                        <form method="post" class="text-center">
+                            <input class="form-control search" name="terme" type="text" placeholder="Rechercher un produit" aria-label="Search">
+                            <button class="btn btn-sm btn-green rounded" name="search" type="submit">Rechercher un produit</button>
+                        </form>
                     </li>
 
                     <li class="nav-item row caddie2">
@@ -132,7 +134,7 @@
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['role'] == 1) : ?>
-                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-default"
+                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
                                         <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
                                         <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>

@@ -16,9 +16,4 @@ class CartModel extends Model
         WHERE id IN (' . implode(',', $ids) . ')
         ');
     }
-
-    public function delCart($product_id)
-    {
-        unset($_SESSION['cart'][$product_id]);
-    }
 }

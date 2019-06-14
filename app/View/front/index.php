@@ -86,15 +86,9 @@
                          alt="<?=$product->name ?>">
                 </a>
                 <div class="mask rgba-white-slight"></div>
-
             </div>
-            <!-- Card content -->
             <div class="card-body card-body-cascade">
-                <!-- Label -->
-
-                <!-- Title -->
-                <h4 class="font-weight-bold card-title"><a
-                            href="<?= $product->urlFront ?>"> <?= ucfirst($product->name) ?> </a>
+                <h4 class="font-weight-bold card-title"><a href="<?= $product->urlFront ?>"> <?= ucfirst($product->name) ?> </a>
                 </h4>
                 <!-- Text -->
                 <div class="description" id="desc">
@@ -102,9 +96,9 @@
                     <a href="#">Plus de detail</a>
                 </div>
             </div>
-            <form method="post" action="index.php?p=cart.addCart&id=<?= $product->id ?>">
+            <form method="post" action="<?= $product->UrlAdd?>">
                 <label for="">
-                    <input type="number" name="much" placeholder="1" min="1" class="w-25">
+                    <input type="number" name="much" value="1" min="1" class="w-25">
                     <button type="submit" class="bouton btn-sm btn-dark-green">
                         <i class="fas fa-cart-arrow-down"></i>
                     </button>

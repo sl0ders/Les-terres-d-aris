@@ -51,4 +51,8 @@ class UserModel extends Model
         return $this->query("UPDATE users SET users.mailvalidation = 1, users.actif = 1, users.controlkey = 0 WHERE id = ?", [$id], true);
     }
 
+    public function finds($controlekey){
+        return $this->query('SELECT 1 FROM users WHERE controlkey = ? LIMIT 1', [$controlekey]);
+    }
+
 }

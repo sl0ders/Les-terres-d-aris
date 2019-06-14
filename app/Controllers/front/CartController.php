@@ -45,7 +45,7 @@ class CartController extends AppController
 
     public function del()
     {
-        $this->Cart->delCart($_GET['id']);
+        unset($_SESSION['cart'][$_GET['id']]);
         echo '<script type="text/javascript">window.location="index.php";</script>';
     }
 

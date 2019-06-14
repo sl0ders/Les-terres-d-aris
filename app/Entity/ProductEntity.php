@@ -14,6 +14,17 @@ class ProductEntity extends Entity
     {
         return 'index.php?p=Admin.Products.show&id=' . $this->id;
     }
+
+    public function getUrlAdd()
+    {
+        return 'index.php?p=cart.addCart&id='. $this->id;
+    }
+
+    public function getUrlSup()
+    {
+        return 'index.php?p=cart.del&id='. $this->id;
+    }
+
     public function getExtract()
     {
         $html = '<p>' . substr($this->description, 0, 200) . '...</p>';

@@ -6,8 +6,9 @@ class ProductModel extends Model
 {
     protected $table = 'products';
 
-    public function getInfoProduct($id){
-        return $this->query("SELECT * FROM users WHERE id = ?",[$id],true);
+    public function getInfoProduct($id)
+    {
+        return $this->query("SELECT * FROM users WHERE id = ?", [$id], true);
     }
 
     public function update($id, $fields)
@@ -27,8 +28,14 @@ class ProductModel extends Model
     {
         $this->query('SELECT 1 FROM products WHERE name = ? LIMIT 1', [$name]);
     }
-    public function verifId($id)
+
+    public function verifStock_Id($id)
     {
         $this->query('SELECT 1 FROM products WHERE stock_id = ? LIMIT 1', [$id]);
+    }
+
+    public function finds($terme)
+    {
+        return $this->query("SELECT products.name FROM products WHERE $terme LIKE ?");
     }
 }
