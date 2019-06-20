@@ -34,7 +34,7 @@
                         } ?></td>
                 </tr>
                 <tr>
-                    <th scope="row" class="font-weight-bolder">IMG UTIL. :</th>
+                    <th scope="row" class="font-weight-bolder">IMAGE UTIL. :</th>
                     <td><img src="<?= $infoUser->imgProfil ?>" alt="imgProfile"></td>
                 </tr>
 

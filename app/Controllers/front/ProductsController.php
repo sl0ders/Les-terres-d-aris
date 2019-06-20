@@ -6,7 +6,8 @@ namespace App\Controllers\Front;
 
 use App\View\HTML\BootstrapForm;
 
-class ProductsController extends AppController
+class
+ProductsController extends AppController
 {
     public function __construct()
     {
@@ -17,7 +18,7 @@ class ProductsController extends AppController
 
     public function index()
     {
-        $products = $this->Product->All();
+        $products = $this->Product->productWidthStock();
         $stocks = $this->Stock->All();
         $this->render('Front.index', compact('products', 'stocks'));
     }

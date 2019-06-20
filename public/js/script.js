@@ -17,13 +17,31 @@ $(document).ready(function () {
     });
 
     let btn = $('.btn-fab');
-    if(btn.length){
-        btn.each(function(){
-            $(this).click(()=>{
+    if (btn.length) {
+        btn.each(function () {
+            $(this).click(() => {
                 $(this).parents().find('#desc').toggle(500);
             })
         })
     }
 });
 
+$(document).ready(function () {
+    $('#form-add').on('submit', (e) => {
+        e.preventDefault();
+        let $form = $(this);
+        $form.find('button').text('Chargement');
+        $.post($form.attr('action'), $form.serializeArray())
+            .done(function (data, text, jqxhr) {
+        alert('le message a bien été transmis')
+        })
+            .fail(function(jqxhr){
+                alert(jqxhr.responseText);
+            })
+            .always(function(){
+                $form.find('button').text('envoyer')
+            })
+
+    })
+});
 

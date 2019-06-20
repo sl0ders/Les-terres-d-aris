@@ -1,3 +1,7 @@
+<?php $_SESSION['order']['price'] = $total ?>
+<?php $_SESSION['order']['user'] = $_SESSION['auth']['id'] ?>
+
+<?php $_SESSION['order']['product']= $_SESSION['cart']?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,12 +18,6 @@
     <link href="css/mdb.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="scss/sass/style.scss">
-    <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=t8wsrw0o08y3nbn52u7y9sj2h0ec3r664cralpe9txjj4yhc"></script>
-    <script>tinymce.init({
-            mode: "exact",
-            elements: "active"
-            });
-    </script>
 </head>
 <body>
 <header class="navig" id="nav1">
@@ -32,7 +30,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse ml-sm-1" id="navbarSupportedContent-7">
-                <ul class="navbar-nav align-items-center d-flex justify-content-between col-md-12">
+                <ul class="navbar-nav align-items-center d-flex justify-content-between col-md-12 align-middle">
                     <li class="nav-item ">
                         <a class="navbar-brand" href="index.php">
                             <img src="img/logo.png" width="120" height="70" alt="logo" class="logo">
@@ -46,34 +44,29 @@
                         <p class="speach text-center">Les terres d'Aris <br> Mangez <span> BON </span> mangez
                             <span> BIO</span> !!
                         </p>
-                        <form method="post" class="text-center">
-                            <input class="form-control search" name="terme" type="text" placeholder="Rechercher un produit" aria-label="Search">
-                            <button class="btn btn-sm btn-green rounded" name="search" type="submit">Rechercher un produit</button>
-                        </form>
                     </li>
-                    <li class="nav-item row caddie">
-                        <?php if ($_SESSION['role']== 0): ?>
+                    <li class="nav-item row caddie mt-1">
+                        <?php if ($_SESSION['auth']['role']== 0): ?>
                             <a class="nav-link" href="index.php?p=cart.index">
                                 <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
                                      id="animated-img1"><span><?= array_sum($_SESSION['cart']); ?></span>
                             </a>
                         <?php endif ?>
-
                         <?php if (!isset($_SESSION['auth'])) : ?>
                             <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
-                            <div class="avatar dropdown mt-2">
+                            <div class="avatar dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
-                                    <?php if ($_SESSION['role'] == 1) : ?>
+                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                     <img src="img/overlays/star.png" alt="etoile admin" width="30" ">
                                     <?php endif ?>
                                 </a>
-                                <?php if ($_SESSION['role'] == 1) : ?>
+                                <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
                                         <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
@@ -111,13 +104,6 @@
                             <img src="img/logo.png" width="90" height="50" alt="logo" class="logo">
                         </a>
                     </li>
-                    <li class="nav-item ml-5 pl-5">
-                        <form method="post" class="text-center">
-                            <input class="form-control search" name="terme" type="text" placeholder="Rechercher un produit" aria-label="Search">
-                            <button class="btn btn-sm btn-green rounded" name="search" type="submit">Rechercher un produit</button>
-                        </form>
-                    </li>
-
                     <li class="nav-item row caddie2">
                         <?php if (!isset($_SESSION['auth'])) : ?>
                             <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
@@ -128,12 +114,12 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
-                                    <?php if ($_SESSION['role'] == 1) : ?>
+                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                         <img src="img/overlays/star.png" alt="etoile admin" width="30">
                                     <?php endif ?>
                                 </a>
-                                <?php if ($_SESSION['role'] == 1) : ?>
+                                <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
                                         <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
@@ -170,11 +156,11 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
 
                     <!-- Content -->
-                    <h6 class="text-uppercase font-weight-bold">les terres d'aris</h6>
+                    <h6 class="text-uppercase font-weight-bold">Les terres d'Aris</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                        consectetur
-                        adipisicing elit.</p>
+                    <p>Les terres d'Aris sont situées du coté de <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s">canohes</a>, de
+                        <a href="https://fr.wikipedia.org/wiki/Ille-sur-T%C3%AAt">Illes sur Tet</a>, ainsi que <a
+                                href="https://fr.wikipedia.org/wiki/Corb%C3%A8re-les-Cabanes">Corbere les cabanes</a></p>
 
                 </div>
                 <!-- Grid column -->
@@ -183,21 +169,17 @@
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
                     <!-- Links -->
-                    <h6 class="text-uppercase font-weight-bold">Products</h6>
+                    <h6 class="text-uppercase font-weight-bold">Nos Produits</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        <a href="#!">MDBootstrap</a>
+                        <a href="#!">Fruit</a>
                     </p>
                     <p>
-                        <a href="#!">MDWordPress</a>
+                        <a href="#!">legumes</a>
                     </p>
                     <p>
-                        <a href="#!">BrandFlow</a>
+                        <a href="#!">Aromate</a>
                     </p>
-                    <p>
-                        <a href="#!">Bootstrap Angular</a>
-                    </p>
-
                 </div>
                 <!-- Grid column -->
 
@@ -205,21 +187,17 @@
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
                     <!-- Links -->
-                    <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                    <h6 class="text-uppercase font-weight-bold">Liens pratique</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        <a href="#!">Your Account</a>
+                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.index<?php else: ?>index.php?p=users.login <?php endif; ?>">Votre compte</a>
                     </p>
                     <p>
-                        <a href="#!">Become an Affiliate</a>
+                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.show<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos Informations</a>
                     </p>
                     <p>
-                        <a href="#!">Shipping Rates</a>
+                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.orders<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos commandes</a>
                     </p>
-                    <p>
-                        <a href="#!">Help</a>
-                    </p>
-
                 </div>
                 <!-- Grid column -->
 
@@ -230,14 +208,14 @@
                     <h6 class="text-uppercase font-weight-bold">Contact</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                        <a href="index.php?p=contact.index"><i class="fas fa-file-signature mr-3"></i>Nous écrire</a>
+                    </p>
                     <p>
-                        <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+                        <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s"><i class="fas fa-home mr-3"></i>Toulouges 66680</a>
+                    </p>
                     <p>
-                        <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                    <p>
-                        <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
-
+                        <i class="fas fa-envelope mr-3"></i> info@lesterresdaris.fr
+                    </p>
                 </div>
                 <!-- Grid column -->
 
@@ -248,8 +226,8 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        <div class="footer-copyright text-center text-black-50 py-3">© 2019 Copyright:
+            <a href="https://openclassrooms.com">Projet 5 </a>
         </div>
         <!-- Copyright -->
 </footer>

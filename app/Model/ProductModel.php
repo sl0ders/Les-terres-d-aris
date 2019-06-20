@@ -11,7 +11,7 @@ class ProductModel extends Model
         return $this->query("SELECT * FROM users WHERE id = ?", [$id], true);
     }
 
-    public function update($id, $fields)
+    public function updates($id, $fields)
     {
         $sql_parts = [];
         $attributes = [];
@@ -24,12 +24,19 @@ class ProductModel extends Model
         return $this->query("UPDATE {$this->table} SET $sql_parts WHERE id = ? ", $attributes, true);
     }
 
+
+
     public function verifName($name)
     {
         $this->query('SELECT 1 FROM products WHERE name = ? LIMIT 1', [$name]);
     }
 
-    public function verifStock_Id($id)
+    public function verifImg($img)
+    {
+        $this->query('SELECT 1 FROM products WHERE name = ? LIMIT 1', [$img]);
+    }
+
+    public function verifStockId($id)
     {
         $this->query('SELECT 1 FROM products WHERE stock_id = ? LIMIT 1', [$id]);
     }
@@ -37,5 +44,14 @@ class ProductModel extends Model
     public function finds($terme)
     {
         return $this->query("SELECT products.name FROM products WHERE $terme LIKE ?");
+    }
+
+    public function productWidthStock(){
+        return $this->query("
+        SELECT *
+        FROM products
+        LEFT JOIN stocks on products.stock_id = stocks.id
+        WHERE quantity
+        ");
     }
 }

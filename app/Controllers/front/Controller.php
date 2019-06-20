@@ -22,13 +22,12 @@ class Controller
     protected function forbidden()
     {
         header('HTTP/1.0 403 Forbidden');
-        die('Acces interdit');
+        die('<img src="img/err-403.jpg" style="width: 100%;">');
     }
-
     protected function notFound()
     {
         header('HTTP/1.0 404 Not Found');
-        die('Page introuvable');
+        die('<img src="img/erreur-404.jpg" style="width: 100%;">');
     }
 
 }

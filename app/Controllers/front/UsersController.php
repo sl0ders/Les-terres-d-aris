@@ -11,7 +11,7 @@ class UsersController extends AppController
 {
     private $longueurKey = 15;
     private $controlkey = "";
-    private $error;
+
 
     public function __construct()
     {
@@ -70,9 +70,9 @@ class UsersController extends AppController
             // Préparation du mail contenant le lien d'activation
             $destinataire = $_POST['email'];
             $sujet = "Activer votre compte";
-            $entete = "From: www.lesterresdaris.fr\n";
-            $entete .= "Reply-To: lesterresdaris.fr\n";
-            $entete .= "Content-Type: text/html; charset='utf-8\n'";
+            $entete = "From:  no-reply@lesterresdaris.fr \n";
+            $entete .= "Reply-To:  no-reply@lesterresdaris.fr \n";
+            $entete .= "Content-Type: text/html; charset='utf-8\n";
 // Le lien d'activation est composé du login(log) et de la clé(controlkey)
             $message = '
             <div class="text-center">
@@ -104,13 +104,13 @@ class UsersController extends AppController
             $username = htmlspecialchars(urlencode($_GET['username']));
             $controlkey = htmlspecialchars($_GET['controlkey']);
             $requser = $this->User->reqUser($username, $controlkey);
-            if ($requser["nbUser"] == null) {
+            if ($requser[0]->nbUser != 0) {
                 $this->User->updateUser($username, $controlkey);
                 echo '<div class="alert alert-danger">Votre compte a bien été confirmé</div>
-                <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/" />';
-            } elseif ($this->User->finds($_GET['controlkey']) === null) {
-                echo '<div class="alert alert-danger">clef de controle érronée</div>
                 <meta http-equiv="refresh" content="3; URL=http://www.lesterresdaris.fr/"/>';
+            } else {
+                echo "<div class='alert alert-danger'>Une erreur est survenue lors de l'activation</div>
+                <meta http-equiv='refresh' content='3; URL=http://www.lesterresdaris.fr/'/>";
             }
         } else {
             header("Location: index.php");
@@ -150,9 +150,9 @@ class UsersController extends AppController
                 ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Récuperation de votre mot de passe";
-                $entete = "From:www.lesterresdaris.fr\n";
-                $entete .= "Reply-To: lesterresdaris.fr\n";
-                $entete .= "Content-Type: text/html; charset='utf-8\n'";
+                $entete = "From: no-reply@lesterresdaris.fr \n";
+                $entete .= "Reply-To:  no-reply@lesterresdaris.fr \n";
+                $entete .= "Content-Type: text/html; charset='utf-8\n";
                 $message = '
             <div class="text-center">
                 <h3>Bienvenue sur Les terres d\'Aris</h3>
@@ -191,11 +191,10 @@ class UsersController extends AppController
                 ]);
                 $destinataire = $_POST['email'];
                 $sujet = "Mot de passe modifié";
-                $entete = "From:www.lesterresdaris.fr\n";
-                $entete .= "Reply-To: lesterresdaris@.fr\n";
-                $entete .= "Content-Type: text/html; charset='utf-8\n'";
-                $message = '
-                <div class="text-center">
+                $entete = "From: no-reply@lesterresdaris.fr \n";
+                $entete .= "Reply-To: no-reply@lesterresdaris.fr \n";
+                $entete .= "Content-Type: text/html; charset='utf-8\n";
+                $message = '<div class="text-center">
                     <h3>Bienvenue sur Les terres d\'Aris</h3>
                     <p>
                         Votre mot de passe a bien etait modifier
@@ -225,5 +224,14 @@ class UsersController extends AppController
         $infoUser = $this->User->getInfoUser($_GET['id']);
         $form = new bootstrapForm();
         $this->render('users.profil.showUser', compact('form', 'infoUser'));
+    }
+
+
+    public function contact()
+    {
+        if (isset($_POST['contact-name']) && isset($_POST['contact-email']) && isset($_POST['contact-subject']) && isset($_POST['contact-message'])) {
+
+        }
+        $this->render('Front.Users.contact');
     }
 }

@@ -12,8 +12,10 @@ class CartModel extends Model
     {
         $ids = array_keys($_SESSION['cart']);
         return $this->query('
-        SELECT * FROM products
-        WHERE id IN (' . implode(',', $ids) . ')
+        SELECT * 
+        FROM products
+        LEFT JOIN stocks on products.stock_id = stocks.id
+        WHERE products.id IN (' . implode(',', $ids) . ')
         ');
     }
 }

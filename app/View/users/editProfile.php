@@ -6,7 +6,7 @@
                     <strong>Modification de vos informations</strong>
                 </h2>
                 <hr>
-                <form method="post" id="loginForm">
+                <form method="post" id="<?= $avatar->id ?>">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="row pb-4 d-flex justify-content-center mb-4">
@@ -14,21 +14,49 @@
                                     <strong>Editez votre profil</strong>
                                 </h4>
                             </div>
-                            <!--Body-->
-                            <?= $form->input('name', $_SESSION['name'], 'user'); ?>
-                            <?= $form->input('firstname', $_SESSION['firstname'], 'user'); ?>
-                            <?= $form->input('username', $_SESSION['username'], 'user'); ?>
-                            <?= $form->input('email', $_SESSION['email'], 'envelope'); ?>
-                            <?= $form->password('pass', 'Entrer un mot de passe', 'lock'); ?>
-                            <?= $form->password('repass', 'Entrer a nouveau le mot de passe', 'lock'); ?>
+                            <!-- First name -->
+                            <div class="md-form">
+                                <i class="fas fa-user prefix"></i>
+                                <input type="text" name="name" value="<?= $_SESSION['auth']['name'] ?>" id="orangeForm-name" class="form-control">
+                                <label for="orangeForm-name">Entrez votre nom</label>
+                            </div>
+                            <!-- Last name -->
+                            <div class="md-form">
+                                <i class="fas fa-user prefix"></i>
+                                <input type="text" name="firstname" value="<?= $_SESSION['auth']['firstname'] ?>" id="orangeForm-name" class="form-control">
+                                <label for="orangeForm-name">Entrez votre prenom</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fas fa-envelope prefix"></i>
+                                <input type="text" name="email" value="<?= $_SESSION['auth']['email'] ?>" id="orangeForm-email" class="form-control">
+                                <label for="orangeForm-email">Entrez votre adresse email</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fas fa-user prefix"></i>
+                                <input type="text" name="username" value="<?= $_SESSION['auth']['username'] ?>" id="orangeForm-email" class="form-control">
+                                <label for="orangeForm-email">Entrer votre pseudo : </label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fas fa-lock prefix"></i>
+                                <input type="password" name="pass" id="orangeForm-pass" class="form-control">
+                                <label for="orangeForm-pass">Entrez votre mot de passe</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fas fa-lock prefix"></i>
+                                <input type="password" name="repass" id="orangeForm-pass" class="form-control">
+                                <label for="orangeForm-pass">Entrer a nouveau le mot de passe</label>
+                            </div>
                         </div>
                         <div class="col-md-7 text-center">
                             <h2 class="mb-5 pt-5">Choisissez votre avatar</h2>
-                            <?php foreach($avatars as $avatar) : ?>
+                            <?php foreach ($avatars as $avatar) : ?>
                                 <!-- Group of material radios - option <?= $avatars->id ?> -->
-                                <input type="radio" class="mb-5 form-check-input" id="avatar<?= $avatar->id ?>" value="img/<?= $avatar->name ?>" name="imgProfil">
-                                <label class="form-check-label" for="avatar<?= $avatar->id ?>">
-                                    <img src="img/<?= $avatar->name ?>" class="mb-5" width="132"  height="142" alt="<?= $avatar->name ?>">
+                                <input type="radio" class="mb-5 form-check-input" <?php if('img/avatar'.$avatar->id.'.png' == $_SESSION['auth']['imgProfil']){echo 'checked';} ?>id="avatar<?= $avatar->id ?>"
+                                       value="img/<?= $avatar->name ?>" name="imgProfil">
+                                <label class="form-check-label" for="avatar-<?= $avatar->id ?>"
+                                       style="margin-bottom: 150px">
+                                    <img src="img/<?= $avatar->name ?>" class="mb-5" width="102" height="112"
+                                         alt="<?= $avatar->name ?>">
                                 </label>
                             <?php endforeach; ?>
                         </div>

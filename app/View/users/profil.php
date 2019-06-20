@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php if ($_SESSION['role'] == 1) : ?>
+                                    <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                         <div class="col-md-6 mb-4">
                                             <div class="card card-image"
                                                  style="background-image: url('/img/historique-jpg1.jpg');">
