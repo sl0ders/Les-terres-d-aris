@@ -9,7 +9,7 @@
     <!-- Modal: modalCart -->
     <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" style="z-index: 300;width: 100%;" role="document">
+        <div class="modal-dialog" style="z-index: 300; width: 100%;" role="document">
             <div class="modal-content">
                 <!--Header-->
                 <div class="modal-header">

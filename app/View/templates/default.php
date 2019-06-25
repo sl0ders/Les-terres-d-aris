@@ -16,7 +16,6 @@
 </head>
 <body>
 <header class="navig" id="nav1">
-
     <nav class="navbar navbar-expand-lg navbar-dark rgba-white-strong scrolling-navbar">
         <div class="container-fluid">
             <button class="navbar-toggler rgba-green-strong" type="button" data-toggle="collapse"

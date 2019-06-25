@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="text-danger">
                                             <!-- Forgot password -->
-                                            <a href="index.php?p=users.retrieveMdp">Mot de passe perdu ?</a>
+                                            <a href="index.php?p=users.editMdp">Mot de passe perdu ?</a>
                                         </div>
                                     </div>
 
@@ -47,7 +47,7 @@
 
                                     <!-- Register -->
                                     <p>Vous n'etes pas encore membre ?
-                                        <a href="index?p=users.signUp"> Inscrivez vous !</a>
+                                        <a href="index?p=users.add"> Inscrivez vous !</a>
                                     </p>
                                 </form>
                                 <!--Form -->

@@ -18,8 +18,15 @@ class UsersController extends AppController
         parent::__construct();
         $this->loadModel('User');
         $this->loadModel('Avatar');
+        $this->loadModel('Order');
     }
 
+    public function index()
+    {
+        if ($_GET)
+        $orders = $this->Order->orderWithProducts(htmlspecialchars($_GET['id']));
+        $this->render('Front.Users.order', compact('form', 'orders'));
+    }
     public function show()
     {
         $infoUser = $this->User->getInfoUser(htmlspecialchars($_GET['id']));
