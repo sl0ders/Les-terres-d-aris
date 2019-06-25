@@ -20,7 +20,7 @@ class DBAuth
      */
     public function login($email, $pass)
     {
-        $user = $this->db->prepare('SELECT users.id, users.role,users.username,users.email, users.hash,users.controlkey, users.firstname,users.imgProfil, users.name FROM users WHERE email = ?', [$email], null, true);
+        $user = $this->db->prepare('SELECT users.id, users.role,users.username,users.email, users.hash,users.controlkey, users.firstname,users.imgProfil, users.name,users.actif FROM users WHERE email = ?', [$email], null, true);
         if ($user) {
             if (password_verify($pass, $user->hash)) {
                 $_SESSION['auth']['id'] = $user->id;
@@ -31,8 +31,8 @@ class DBAuth
                 $_SESSION['auth']['email'] = $user->email;
                 $_SESSION['auth']['key'] = $user->controlKey;
                 $_SESSION['auth']['role'] = $user->role;
-                $_SESSION['cart'] = [];
-                $_SESSION['cart']['quantity'] = [];
+                $_SESSION['auth']['actif'] = $user->actif;
+                $_SESSION['error'] = "";
                 return true;
             }
         }
@@ -66,4 +66,6 @@ class DBAuth
         return false;
     }
 
-};
+}
+
+;

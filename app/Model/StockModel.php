@@ -4,6 +4,8 @@ namespace App\Model;
 
 class StockModel extends Model
 {
+    protected $table = 'stocks';
+
     public function getStock()
     {
         return $this->query("
@@ -18,16 +20,10 @@ class StockModel extends Model
         $this->query("SELECT stocks.quantity FROM stocks");
     }
 
-    public function updateid($id, $fields)
+    public function findQuantity($id)
     {
-        $sql_parts = [];
-        $attributes = [];
-        foreach ($fields as $k => $v) {
-            $sql_parts[] = "$k = ?";
-            $attributes[] = $v;
-        }
-        $attributes[] = $id;
-        $sql_parts = implode(', ', $sql_parts);
-        return $this->query("UPDATE {$this->table} SET $sql_parts WHERE id = ? ", $attributes, true);
+        return $this->query("
+        SELECT quantity from stocks s WHERE id = ?
+        ",[$id],true);
     }
 }

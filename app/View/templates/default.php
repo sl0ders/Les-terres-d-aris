@@ -1,10 +1,5 @@
-<?php $_SESSION['order']['price'] = $total ?>
-<?php $_SESSION['order']['user'] = $_SESSION['auth']['id'] ?>
-
-<?php $_SESSION['order']['product']= $_SESSION['cart']?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,14 +41,14 @@
                         </p>
                     </li>
                     <li class="nav-item row caddie mt-1">
-                        <?php if ($_SESSION['auth']['role']== 0): ?>
+                        <?php if ($_SESSION['auth']['role'] == 0 && $_SESSION['auth']['actif'] == 1): ?>
                             <a class="nav-link" href="index.php?p=cart.index">
                                 <img src="img/caddie.gif" class="animated bounceIn" width="70" alt="cart"
                                      id="animated-img1"><span><?= array_sum($_SESSION['cart']); ?></span>
                             </a>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['auth'])) : ?>
-                            <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
+                            <a class="nav-link mt-4" href="index.php?p=users.add">S'inscrire</a>
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
@@ -61,18 +56,25 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0"
+                                         width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['auth']['role'] == 1) : ?>
-                                    <img src="img/overlays/star.png" alt="etoile admin" width="30" ">
+                                        <img src="img/overlays/star.png" alt="etoile admin" width="30" ">
                                     <?php endif ?>
                                 </a>
                                 <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
-                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des commandes</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des
+                                            utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des
+                                            stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des
+                                            produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des
+                                            commandes</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.contact.index">Gestion des
+                                            contacts</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
@@ -106,7 +108,7 @@
                     </li>
                     <li class="nav-item row caddie2">
                         <?php if (!isset($_SESSION['auth'])) : ?>
-                            <a class="nav-link mt-4" href="index.php?p=users.signUp">S'inscrire</a>
+                            <a class="nav-link mt-4" href="index.php?p=users.add">S'inscrire</a>
                             <a class="nav-link mt-4" href="index.php?p=users.login">Se connecter</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['auth'])) : ?>
@@ -114,7 +116,8 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
                                    data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0" width="70" height="70" alt="avatar image">
+                                    <img src="<?= $_SESSION['auth']['imgProfile'] ?>" class="rounded-circle z-depth-0"
+                                         width="70" height="70" alt="avatar image">
                                     <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                         <img src="img/overlays/star.png" alt="etoile admin" width="30">
                                     <?php endif ?>
@@ -122,16 +125,20 @@
                                 <?php if ($_SESSION['auth']['role'] == 1) : ?>
                                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                          aria-labelledby="navbarDropdownMenuLink-55">
-                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des utilisateurs</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des stocks</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des produits</a>
-                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des commandes</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Users.index">Gestion des
+                                            utilisateurs</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Stocks.index">Gestion des
+                                            stocks</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.Products.index">Gestion des
+                                            produits</a>
+                                        <a class="dropdown-item" href="index.php?p=Admin.orders.index">Gestion des
+                                            commandes</a>
                                         <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                     </div>
                                 <?php endif ?>
                                 <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                                      aria-labelledby="navbarDropdownMenuLink-55">
-                                    <a class="dropdown-item" href="index.php?p=Front.profil.index">Mon compte</a>
+                                    <a class="dropdown-item" href="index.php?p=profil.index">Mon compte</a>
                                     <a class="dropdown-item" href="index.php?p=users.disconnect">Se déconnecter</a>
                                 </div>
                             </div>
@@ -158,9 +165,11 @@
                     <!-- Content -->
                     <h6 class="text-uppercase font-weight-bold">Les terres d'Aris</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p>Les terres d'Aris sont situées du coté de <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s">canohes</a>, de
+                    <p>Les terres d'Aris sont situées du coté de <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s">canohes</a>,
+                        de
                         <a href="https://fr.wikipedia.org/wiki/Ille-sur-T%C3%AAt">Illes sur Tet</a>, ainsi que <a
-                                href="https://fr.wikipedia.org/wiki/Corb%C3%A8re-les-Cabanes">Corbere les cabanes</a></p>
+                                href="https://fr.wikipedia.org/wiki/Corb%C3%A8re-les-Cabanes">Corbere les cabanes</a>
+                    </p>
 
                 </div>
                 <!-- Grid column -->
@@ -190,13 +199,16 @@
                     <h6 class="text-uppercase font-weight-bold">Liens pratique</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                     <p>
-                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.index<?php else: ?>index.php?p=users.login <?php endif; ?>">Votre compte</a>
+                        <a href="<?php if ($_SESSION['auth']): ?>index.php?p=profil.index<?php else: ?>index.php?p=users.login <?php endif; ?>">Votre
+                            compte</a>
                     </p>
                     <p>
-                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.show<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos Informations</a>
+                        <a href="<?php if ($_SESSION['auth']): ?>index.php?p=profil.show<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos
+                            Informations</a>
                     </p>
                     <p>
-                        <a href="<?php if($_SESSION['auth']): ?>index.php?p=profil.orders<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos commandes</a>
+                        <a href="<?php if ($_SESSION['auth']): ?>index.php?p=order.index<?php else: ?>index.php?p=users.login <?php endif; ?>">Vos
+                            commandes</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -211,7 +223,8 @@
                         <a href="index.php?p=contact.index"><i class="fas fa-file-signature mr-3"></i>Nous écrire</a>
                     </p>
                     <p>
-                        <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s"><i class="fas fa-home mr-3"></i>Toulouges 66680</a>
+                        <a href="https://fr.wikipedia.org/wiki/Canoh%C3%A8s"><i class="fas fa-home mr-3"></i>Toulouges
+                            66680</a>
                     </p>
                     <p>
                         <i class="fas fa-envelope mr-3"></i> info@lesterresdaris.fr
@@ -240,6 +253,7 @@
 <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../../../js/mdb.js"></script>
+<script type="text/javascript" src="../../../js/validator.min.js"></script>
 
 <script type="text/javascript" src="js/script.js"></script>
 </body>

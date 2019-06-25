@@ -19,50 +19,54 @@ class ContactController extends AppController
     }
 
 
-    public
-    function add()
+    public function add()
     {
-        if ($_POST) {
-            if (empty($_POST['contact-name']) || empty($_POST['contact-email']) || empty($_POST['contact-subject']) || empty($_POST['contact-message'])) {
-                if (!isset($_POST['contact-name']) || !isset($_POST['contact-email']) || !isset($_POST['contact-subject']) || !isset($_POST['contact-message'])) {
-                    header('500 Internal Server Error', true, 500);
-                    die('vous devez remplire tout les encarts');
-                }
+        $errorMSG = "";
+// NAME
+        if (empty($_POST["name"])) {
+            $errorMSG = "Veuillez entrer votre nom ";
+        } else {
+            $name = htmlspecialchars($_POST["name"]);
+        }
+// FIRSTNAME
+        if (empty($_POST["firstname"])) {
+            $errorMSG = "Veuillez entrer votre prénom ";
+        } else {
+            $firstname = htmlspecialchars($_POST["firstname"]);
+        }
+// EMAIL
+        if (empty($_POST["email"])) {
+            $errorMSG .= "Veuillez entrer votre adresse email ";
+        } else {
+            $email = htmlspecialchars($_POST["email"]);
+        }
+//SUBJECT
+        if (empty($_POST["subject"])) {
+            $errorMSG .= "Veuillez entrer votre adresse email ";
+        } else {
+            $subject = htmlspecialchars($_POST["subject"]);
+        }
+// MESSAGE
+        if (empty($_POST["message"])) {
+            $errorMSG .= "Veuillez entrer un message ";
+        } else {
+            $message = htmlspecialchars($_POST["message"]);
+        }
+// redirect to success page
+        if ($errorMSG == "") {
+            echo "success";
+            $this->Contact->create([
+                'user_name' => $name,
+                'user_firstname' => $firstname,
+                'user_email' => $email,
+                'subject' => $subject,
+                'message' =>$message
+            ]);
+        } else {
+            if ($errorMSG == "") {
+                echo "Quelque chose a mal tourné :(";
             } else {
-                $result = $this->Contact->create([
-                    'user_name' => $_POST['contact-name'],
-                    'user_email' => $_POST['contact-email'],
-                    'subject' => $_POST['contact-subject'],
-                    'message' => $_POST['contact-message']
-                ]);
-                if ($result) {
-                    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') { ?>
-                        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog" style="z-index: 300;" role="document">
-                                <div class="modal-content">
-                                    <!--Header-->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="myModalLabel">succé!</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <!--Body-->
-                                    <div class="modal-body">
-                                        le message a bien etait envoyer
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    } else {
-                        header('Location:index.php');
-                    }
-                }
-                $contacts = $this->Contact->all();
-                $this->render('Front.Users.contact', compact('contacts'));
+                echo $errorMSG;
             }
         }
     }

@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Mandali|Titillium+Web&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Ranga&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
 body {
   background-image: url("../../img/background3.jpg");
   background-size: cover;
-  font-family: 'Mandali', sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
+
 
 .view {
   background: url("../../img/Arrière-plan-copie.png") no-repeat center center;
@@ -53,8 +56,6 @@ main {
 }
 
 
-
-
 footer {
   background-color: rgba(85, 136, 77, 0.6) !important;
   opacity: 0.8;
@@ -93,7 +94,7 @@ footer a {
 }
 
 @media screen and (max-width: 990px) {
-  .speach{
+  .speach {
     margin-top: -50px;
     font-size: 2rem;
   }
@@ -105,36 +106,42 @@ footer a {
 
 }
 
-.speach span{
+.speach span {
   color: #8d0e0a;
 }
 
-.fixed
-{
+.fixed {
   position: fixed;
   top: 35px;
 }
 
-#header.fixed {position:fixed;width:100%;top:0;left:0;margin-top:0;}
+#header.fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+}
 
-.caddie{
+.caddie {
   margin-top: -150px;
 }
 
-.navig{
-  position:relative;
+.navig {
+  position: relative;
   z-index: 200;
 }
 
-#nav2{
+#nav2 {
   display: none;
 }
+
 /* Only for snippet */
 .double-nav .breadcrumb-dn {
   color: #fff;
 }
 
-.sidebar{
+.sidebar {
   height: 600px;
 }
 
@@ -145,10 +152,9 @@ footer a {
   display: none;
 }
 
-#idval{
+#idval {
   margin-bottom: 50px;
 }
-
 
 
 .number-input input[type="number"] {
@@ -224,7 +230,7 @@ footer a {
   color: #495057;
 }
 
-@media not all and (min-resolution:.001dpcm) {
+@media not all and (min-resolution: .001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
 
     .number-input.def-number-input.safari_only button:before,
@@ -234,10 +240,16 @@ footer a {
   }
 }
 
-.minicount{
+.minicount {
   border: 2px solid green;
   border-radius: 10%;
   background-color: rgba(33, 155, 12, 0.5);
 }
 
 
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+  }
+}

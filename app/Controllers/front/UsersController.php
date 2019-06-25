@@ -20,55 +20,51 @@ class UsersController extends AppController
         $this->loadModel('Avatar');
     }
 
-    public function signUp()
+    public function show()
+    {
+        $infoUser = $this->User->getInfoUser(htmlspecialchars($_GET['id']));
+        $form = new bootstrapForm();
+        $this->render('users.profil.showUser', compact('form', 'infoUser'));
+    }
+
+    public function add()
     {
         if (!empty($_POST)) {
             $error = true;
             if (empty($_POST['email']) || empty($_POST['name']) || empty($_POST['firstname']) || empty($_POST['username']) || empty($_POST['pass']) || empty($_POST['repass']) || empty($_POST['imgProfil'])) {
                 echo $this->missCase;
-                echo '<script>window.location="index.php?p=users.signUp.php";</script>';
+                echo '<script>window.location="index.php?p=users.add.php";</script>';
                 exit;
             }
 
             if ($this->User->verifMail($_POST['email'])) {
                 echo $this->mailExist;
-                echo '<script>window.location="index.php?p=users.signUp.php";</script>';
+                echo '<script>window.location="index.php?p=users.add.php";</script>';
                 exit;
             }
 
             if ($this->User->verifUsername($_POST['username'])) {
                 echo $this->usernameExist;
-                echo '<script>window.location="index.php?p=users.signUp.php";</script>';
+                echo '<script>window.location="index.php?p=users.add.php";</script>';
                 exit;
             }
 
             if ($_POST['pass'] !== $_POST['repass']) {
                 echo $this->passNotMatch;
-                echo '<script>window.location="index.php?p=users.signUp.php";</script>';
+                echo '<script>window.location="index.php?p=users.add.php";</script>';
                 exit;
             }
 
             if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,7}$#i", $_POST['email'])) {
                 echo $this->emailFormat;
-                echo '<script>window.location="index.php?p=users.signUp.php";</script>';
+                echo '<script>window.location="index.php?p=users.add.php";</script>';
                 exit;
             }
-
             for ($i = 1; $i < $this->longueurKey; $i++) {
                 $this->controlkey .= mt_rand(0, 9);
             }
-            $result = $this->User->create([
-                'email' => htmlspecialchars($_POST['email']),
-                'name' => htmlspecialchars($_POST['name']),
-                'firstname' => htmlspecialchars($_POST['firstname']),
-                'username' => htmlspecialchars($_POST['username']),
-                'imgProfil' => htmlspecialchars($_POST['imgProfil']),
-                'controlkey' => $this->controlkey,
-                'actif' => 0,
-                'hash' => htmlspecialchars(password_hash($_POST['pass'], PASSWORD_DEFAULT))
-            ]);
             // Préparation du mail contenant le lien d'activation
-            $destinataire = $_POST['email'];
+            $destinataire = htmlspecialchars($_POST['email']);
             $sujet = "Activer votre compte";
             $entete = "From:  no-reply@lesterresdaris.fr \n";
             $entete .= "Reply-To:  no-reply@lesterresdaris.fr \n";
@@ -80,11 +76,20 @@ class UsersController extends AppController
              <p>
              Pour activer votre compte, veuillez cliquer sur le lien ci dessous <br>
              ou copier/coller dans votre navigateur internet.
-             <a href="http://lesterresdaris.fr/index.php?p=users.confirmation&username=' . urlencode($_POST['username']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>             
+             <a href="http://lesterresdaris.fr/index.php?p=users.validate&username=' . urlencode($_POST['username']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>             
              Ceci est un mail automatique, Merci de ne pas y répondre.
              </p>
              </div>';
-
+            $result = $this->User->create([
+                'email' => htmlspecialchars($_POST['email']),
+                'name' => htmlspecialchars($_POST['name']),
+                'firstname' => htmlspecialchars($_POST['firstname']),
+                'username' => htmlspecialchars($_POST['username']),
+                'imgProfil' => htmlspecialchars($_POST['imgProfil']),
+                'hash' => htmlspecialchars(password_hash($_POST['pass'], PASSWORD_DEFAULT)),
+                'controlkey' => $this->controlkey,
+                'actif' => 0,
+            ]);
             if ($result) {
                 $error = false;
                 mail($destinataire, $sujet, $message, $entete);
@@ -98,7 +103,7 @@ class UsersController extends AppController
     }
 
 
-    public function confirmation()
+    public function validate()
     {
         if (isset($_GET['username'], $_GET['controlkey']) && !empty($_GET['username']) && !empty($_GET['controlkey'])) {
             $username = htmlspecialchars(urlencode($_GET['username']));
@@ -133,18 +138,18 @@ class UsersController extends AppController
         $this->render('users.login', compact('form', 'errors'));
     }
 
-    public function retrieveMdp()
+    public function editMdp()
     {
         if (!empty($_POST)) {
             if (!$this->User->emailexist($_POST['email'])) {
                 echo $this->emailNotExist;
-                echo '<script>window.location="index.php?p=users.retrieveMdp.php";</script>';
+                echo '<script>window.location="index.php?p=users.editMdp.php";</script>';
                 exit;
             } else {
                 for ($i = 1; $i < $this->longueurKey; $i++) {
                     $this->controlkey .= mt_rand(0, 9);
                 }
-                $this->User->update($_POST['email'], [
+                $this->User->updateEmail($_POST['email'], [
                     'mailvalidation' => 0,
                     'controlkey' => $this->controlkey
                 ]);
@@ -159,7 +164,7 @@ class UsersController extends AppController
                 <p>
                     Pour modifier votre mot de passe, veuillez cliquer sur le lien ci dessous
                     ou copier/coller dans votre navigateur internet.
-                    <a href="http://lesterresdaris.fr/index.php?p=users.confimRetrieve&email=' . urlencode($_POST['email']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>
+                    <a href="http://lesterresdaris.fr/index.php?p=users.validateEditMdp&email=' . urlencode($_POST['email']) . '&controlkey=' . $this->controlkey . '">Confirmer mon adresse mail</a>
                     <br>
                     Ceci est un mail automatique, Merci de ne pas y répondre.
                 </p>
@@ -174,19 +179,19 @@ class UsersController extends AppController
         $this->render('users.retrievemdp', compact('form', 'valid'));
     }
 
-    public function confimRetrieve()
+    public function validateEditMdp()
     {
-        $this->User->update($_GET['email'], [
+        $this->User->updateEmail($_GET['email'], [
             'controlkey' => null,
             'mailvalidation' => 1,
         ]);
         if ($_POST) {
             if ($_POST['pass'] !== $_POST['repass']) {
                 echo $this->passNotMatch;
-                echo '<script>window.location="index.php?p=users.confimRetrieve.php";</script>';
+                echo '<script>window.location="index.php?p=users.validateEditMdp.php";</script>';
                 exit;
             } else {
-                $this->User->update($_GET['email'], [
+                $this->User->updateEmail(htmlspecialchars($_GET['email']), [
                     'hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
                 ]);
                 $destinataire = $_POST['email'];
@@ -219,19 +224,5 @@ class UsersController extends AppController
         exit;
     }
 
-    public function showUser()
-    {
-        $infoUser = $this->User->getInfoUser($_GET['id']);
-        $form = new bootstrapForm();
-        $this->render('users.profil.showUser', compact('form', 'infoUser'));
-    }
 
-
-    public function contact()
-    {
-        if (isset($_POST['contact-name']) && isset($_POST['contact-email']) && isset($_POST['contact-subject']) && isset($_POST['contact-message'])) {
-
-        }
-        $this->render('Front.Users.contact');
-    }
 }

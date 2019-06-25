@@ -21,6 +21,7 @@ class AppController extends Controller
     protected $passNotMatch = '<script type="text/javascript">' . 'alert("Erreur : Les mots de passes ne correspondent pas")'.'</script>';
     protected $emailFormat = '<script type="text/javascript">' . 'alert("Erreur : l\'adresse email n\'est pas au bon format")'.'</script>';
     protected $emailNotExist = '<script type="text/javascript">' . 'alert("Erreur : l\'adresse email n\'existe pas")'.'</script>';
+    protected $cartEmpty = '<script type="text/javascript">' . 'alert("Votre panier est vide, selectionnez tout dabord des produit pour valider")'.'</script>';
     protected $template = 'default';
 
     public function __construct()

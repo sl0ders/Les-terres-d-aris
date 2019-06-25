@@ -15,33 +15,58 @@ $(document).ready(function () {
             }
         });
     });
+});
+$(document).ready(function () {
+    $("#contactForm").validator().on("submit", function (event) {
+        if (event.isDefaultPrevented()) {
+            formError();
+            submitMSG(false, "Avez-vous rempli le formulaire correctement?");
+        } else {
+            event.preventDefault();
+            submitForm();
+        }
+    });
 
-    let btn = $('.btn-fab');
-    if (btn.length) {
-        btn.each(function () {
-            $(this).click(() => {
-                $(this).parents().find('#desc').toggle(500);
-            })
-        })
+
+    function submitForm() {
+        let name = $("#contact-name").val();
+        let firstname = $("#contact-firstname").val();
+        let email = $("#contact-email").val();
+        let subject = $("#contact-subject").val();
+        let message = $("#contact-message").val();
+
+        $.ajax({
+            type: "POST",
+            url: "index.php?p=contact.add",
+            data: "name=" + name + "&firstname=" + firstname + "&email=" + email + "&subject=" + subject + "&message=" + message,
+            success: function (text) {
+                if (text == "success") {
+                    formSuccess();
+                } else {
+                    formError();
+                    submitMSG(false, text);
+                }
+            }
+        });
+    }
+
+    function formSuccess() {
+        $("#contactForm")[0].reset();
+        submitMSG(true, "Message bien envoyé !")
+    }
+
+    function formError() {
+        $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $(this).removeClass();
+        });
+    }
+
+    function submitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated text-success";
+        } else {
+            var msgClasses = "h3 text-center text-danger";
+        }
+        $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
 });
-
-$(document).ready(function () {
-    $('#form-add').on('submit', (e) => {
-        e.preventDefault();
-        let $form = $(this);
-        $form.find('button').text('Chargement');
-        $.post($form.attr('action'), $form.serializeArray())
-            .done(function (data, text, jqxhr) {
-        alert('le message a bien été transmis')
-        })
-            .fail(function(jqxhr){
-                alert(jqxhr.responseText);
-            })
-            .always(function(){
-                $form.find('button').text('envoyer')
-            })
-
-    })
-});
-

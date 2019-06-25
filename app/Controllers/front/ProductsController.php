@@ -29,26 +29,9 @@ ProductsController extends AppController
         if ($this->Product->find($_GET['id']) === false) {
             die($this->notFound());
         }
-        $product = $this->Product->find(htmlspecialchars($_GET['id']));
+        $product = $this->Product->findWidthStock(htmlspecialchars($_GET['id']));
         $this->render('Front.Products.show', compact('product'));
 
 
-    }
-
-    public function search()
-    {
-        if (isset($_POST['search'])) {
-            $_POST['terme'] = htmlspecialchars($_POST['terme']);
-            $terme = $_POST['terme'];
-            $terme = trim($terme);
-            $terme = strip_tags($terme);
-
-        }
-        if (isset($terme)) {
-
-            $terme = strtolower($terme);
-            $select_terme = $this->Product->finds($terme);
-            $select_terme->execute(["%" . $terme . "%", "%" . $terme . "%"]);
-        }
     }
 }

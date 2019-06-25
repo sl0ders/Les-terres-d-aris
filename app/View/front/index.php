@@ -9,7 +9,7 @@
     <!-- Modal: modalCart -->
     <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog" style="z-index: 300;" role="document">
+        <div class="modal-dialog" style="z-index: 300;width: 100%;" role="document">
             <div class="modal-content">
                 <!--Header-->
                 <div class="modal-header">
@@ -28,36 +28,47 @@
                             <th class="text-center font-weight-bolder">Disponibilité</th>
                             <th class="text-center font-weight-bolder">Prix</th>
                             <th class="text-center font-weight-bolder">Quantité</th>
+                            <th class="text-center font-weight-bolder">Total simple</th>
                             <th class="text-center font-weight-bolder">Action</th>
                         </tr>
                         </thead>
-                        <?php foreach ($products as $product) : ?>
+                        <?php foreach ($products
+
+                        as $key => $product) : ?>
                         <?php if (isset($_SESSION['cart'][$product->id])) : ?>
                         <? $total = $total += $product->price * $_SESSION['cart'][$product->id]; ?>
                         <tbody>
-
                         <tr>
                             <td class="pt-3-half" contenteditable="false">
-                                <img src="img/<?= $product->name ?>.png" alt="<?= $product->name ?>" width="70">
+                                <img src="<?= $product->imgMini ?>" alt="<?= $product->name ?>" width="70">
                                 <?= $product->name ?>
                             </td>
                             <td>
-                                <?php if ($product->quantity <= 50) {
-                                    echo '<p class="text-center h6 text-danger">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Produit en rupture dépéchez-vous !!</p>';
-                                } elseif ($product->quantity <= 100) {
-                                    echo '<p class="text-center h6 text-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Produit bientot en rupture</p>';
-                                } elseif ($product->quantity <= $_SESSION['cart'][$product->id]) {
-                                    echo '<p class="text-center h6 text-danger">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Produit épuisé!</p>';
-                                } else {
-                                    echo '<p class="text-center h6 text-success">
-                        Ce produit est encore disponible en quantité</p>';
-                                } ?>
+                                <?php if ($product->quantity <= 1) : ?>
+                                    <p class="text-center h6 text-danger">
+                                        <i class="fas fa-exclamation-triangle"></i><br>
+                                        Produit épuisé!</p>
+
+                                <?php elseif ($product->quantity <= 100) : ?>
+                                    <p class="text-center h6 text-warning">
+                                        <i class="fas fa-exclamation-triangle"></i><br>
+                                        Produit bientot en rupture</p>
+
+                                <?php elseif ($product->quantity <= 50)  : ?>
+                                    <p class="text-center h6 text-danger">
+                                        <i class="fas fa-exclamation-triangle"></i><br>
+                                        Produit en rupture dépéchez-vous !!</p>
+
+                                <?php elseif ($product->quantity > 100): ?>
+                                    <p class="text-center h6 text-success">
+                                        <br>
+                                        Ce produit est encore disponible en quantité</p>
+
+                                <?php else : ?>
+                                    <p class="text-center h6 text-danger">
+                                        <i class="fas fa-exclamation-triangle"></i><br>
+                                        Produit épuisé!</p>
+                                <?php endif ?>
                             </td>
 
                             <td class="pt-3-half" contenteditable="false">
@@ -67,8 +78,12 @@
                             <td class="pt-3-half" contenteditable="false">
                                 <?= $_SESSION['cart'][$product->id] ?>
                             </td>
+                            <td class="pt-3-half" contenteditable="false">
+                                <?php $totalsimple = $product->price * $_SESSION['cart'][$product->id]?>
+                                <?= $totalsimple ?>€
+                            </td>
                             <td>
-                                <form method="post" action="index.php?p=cart.del&id=<?= $product->id ?>">
+                                <form method="post" action="index.php?p=cart.delete&id=<?= $product->id ?>">
                                     <label for="<?= $product->id ?>">
                                         <input type="submit" value="supprimé"
                                                class="btn btn-primary btn-sm btn-rounded">
@@ -79,17 +94,26 @@
 
                         <?php endif; ?>
                         <?php endforeach; ?>
+
                         <tr>
                             <td colspan="2">Total</td>
                             <td colspan="2"><?= $total ?> €</td>
                             <td>
-                                <form method="post">
-                                    <button value="Valider" name="order" class="btn btn-sm btn-outline-primary">
-                                        Valider
-                                    </button>
-                                </form>
+                                <?php if ($_SESSION['auth']['actif'] == 1): ?>
+                                    <form action="index.php?p=order.add&quantity=<?= $_SESSION['cart'][$product->id] ?>" method="post">
+                                        <button value="Valider" name="order" class="btn btn-sm btn-outline-primary">
+                                            Valider
+                                        </button>
+                                    </form>
+                                <?php else: ?>
                             </td>
                         </tr>
+                            <tr>
+                                <td colspan="5" class="danger-color text-white"> Veuillez finaliser votre inscription,
+                                    avant de valider votre commande
+                                </td>
+                            </tr>
+                        <?php endif ?>
                         </tbody>
                     </table>
                 </div>
@@ -97,58 +121,67 @@
         </div>
     </div>
 <?php endif ?>
-<!-- Modal: modalCart -->
 
+<!-- Modal: modalCart -->
 <?php foreach ($products as $product) : ?>
     <div class="wow fadeInUp cards">
         <div class="text-center card card-cascade narrower text-center content p-auto mt-5 ml-3 mb-5">
             <!-- Card image -->
             <div class="view view-cascade overlay">
                 <a href="<?= $product->urlFront ?>">
-                    <img class="card-img-top" width="70" height="200" style="z-index:2"
+                    <img class="card-img-top" width="50" height="180" style="z-index:2"
                          src="<?= $product->imgMini ?>"
                          alt="<?= $product->name ?>">
                 </a>
                 <div class="mask rgba-white-slight"></div>
             </div>
             <div class="card-body card-body-cascade">
-                <h4 class="font-weight-bold card-title"><a
-                            href="<?= $product->urlFront ?>"> <?= ucfirst($product->name) ?> </a>
+                <h4>
+                    <a class="text-success font-weight-bold" href="<?= $product->urlFront ?>"> <?= ucfirst($product->name) ?> </a>
                 </h4>
-                <?php if ($product->quantity <= 50): ?>
-                    <span class="text-danger">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>Ce produit arrive en rupture de stock</p>
-                    </span>
+                <?php
+                if ($product->quantity <= 1) : ?>
+                    <p class="text-center h6 text-danger">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Produit épuisé!</p>
 
-                <?php elseif ($product->quantity <= 100): ?>
-                    <span class="text-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>Attention, le produit s'épuise dépéchez-vous !</p>
-                    </span>
-                <?php endif; ?>
+                <?php elseif ($product->quantity <= 100) : ?>
+                    <p class="text-center h6 text-warning">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Produit bientot en rupture</p>
 
+                <?php elseif ($product->quantity <= 50)  : ?>
+                    <p class="text-center h6 text-danger">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Produit en rupture dépéchez-vous !!</p>
 
+                <?php elseif ($product->quantity > 100): ?>
+                    <p class="text-center h6 text-success"></p>
+
+                <?php else : ?>
+                    <p class="text-center h6 text-danger">
+                        <i class="fas fa-exclamation-triangle"></i><br>
+                        Produit épuisé!</p>
+                <?php endif ?>
                 <!-- Text -->
-                <div class="description" id="desc">
-                    <?= $product->description ?>
-                    <a href="#">Plus de detail</a>
+                <div class="description" id="desc-<?= $product->id ?>">
+                    <?= '<p>' . substr($product->description, 0, 50) . '...</p>'?>
+                    <a href="<?= $product->urlFront ?>" style="color: black">
+                   <button class="btn btn-sm rgba-green-light">en savoir +</button>
+                    </a>
                 </div>
             </div>
-            <form method="post" action="<?= $product->UrlAdd ?>">
-                <label for="">
-                    <input type="number" name="much" value="1" min="1" class="w-25">
-                    <button type="submit" class="bouton btn-sm btn-dark-green">
-                        <i class="fas fa-cart-arrow-down"></i>
-                    </button>
-                </label>
-            </form>
+            <?php if ($product->quantity > 1) : ?>
+                <form method="post" action="<?= $product->UrlAdd ?>">
+                    <label for="">
+                        <input type="number" name="much" value="1" min="1" class="w-25">
+                        <button type="submit" class="bouton btn-sm btn-dark-green">
+                            <i class="fas fa-cart-arrow-down"></i>
+                        </button>
+                    </label>
+                </form>
+            <?php endif; ?>
             <h5 class="green-text pb-2 pt-1">Prix: <?= $product->price ?>€/kg</h5>
-            <div class="text-right">
-                <label>
-                    <input value="en savoir +" type="button" class="btn-fab btn btn-sm rgba-green-light">
-                </label>
-            </div>
         </div>
     </div>
 <?php endforeach; ?>

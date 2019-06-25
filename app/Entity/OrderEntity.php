@@ -10,4 +10,8 @@ class OrderEntity extends Entity
     {
         return 'index.php?p=admin.orders.index&id=' . $this->id;
     }
+    public function getUrlAdmin()
+    {
+        return 'index.php?p=Admin.orders.show&id=' . $this->id;
+    }
 }

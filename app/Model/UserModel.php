@@ -54,5 +54,16 @@ class UserModel extends Model
     public function finds($controlekey){
         return $this->query('SELECT 1 FROM users WHERE controlkey = ? LIMIT 1', [$controlekey]);
     }
-
+    public function updateEmail($id, $fields)
+    {
+        $sql_parts = [];
+        $attributes = [];
+        foreach ($fields as $k => $v) {
+            $sql_parts[] = "$k = ?";
+            $attributes[] = $v;
+        }
+        $attributes[] = $id;
+        $sql_parts = implode(', ', $sql_parts);
+        return $this->query("UPDATE {$this->table} SET $sql_parts WHERE email = ? ", $attributes, true);
+    }
 }

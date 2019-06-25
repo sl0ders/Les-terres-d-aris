@@ -36,22 +36,12 @@
                                 <input type="text" name="username" value="<?= $_SESSION['auth']['username'] ?>" id="orangeForm-email" class="form-control">
                                 <label for="orangeForm-email">Entrer votre pseudo : </label>
                             </div>
-                            <div class="md-form">
-                                <i class="fas fa-lock prefix"></i>
-                                <input type="password" name="pass" id="orangeForm-pass" class="form-control">
-                                <label for="orangeForm-pass">Entrez votre mot de passe</label>
-                            </div>
-                            <div class="md-form">
-                                <i class="fas fa-lock prefix"></i>
-                                <input type="password" name="repass" id="orangeForm-pass" class="form-control">
-                                <label for="orangeForm-pass">Entrer a nouveau le mot de passe</label>
-                            </div>
                         </div>
                         <div class="col-md-7 text-center">
                             <h2 class="mb-5 pt-5">Choisissez votre avatar</h2>
                             <?php foreach ($avatars as $avatar) : ?>
                                 <!-- Group of material radios - option <?= $avatars->id ?> -->
-                                <input type="radio" class="mb-5 form-check-input" <?php if('img/avatar'.$avatar->id.'.png' == $_SESSION['auth']['imgProfil']){echo 'checked';} ?>id="avatar<?= $avatar->id ?>"
+                                <input type="radio" class="mb-5 form-check-input" id="avatar-<?= $avatar->id ?>"
                                        value="img/<?= $avatar->name ?>" name="imgProfil">
                                 <label class="form-check-label" for="avatar-<?= $avatar->id ?>"
                                        style="margin-bottom: 150px">

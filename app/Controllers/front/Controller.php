@@ -22,12 +22,12 @@ class Controller
     protected function forbidden()
     {
         header('HTTP/1.0 403 Forbidden');
-        die('<img src="img/err-403.jpg" style="width: 100%;">');
+        die('<img src="img/err-403.jpg" style="width: 100%;"><meta http-equiv="refresh" content="4; URL=http://www.lesterresdaris.fr/"/>');
     }
     protected function notFound()
     {
         header('HTTP/1.0 404 Not Found');
-        die('<img src="img/erreur-404.jpg" style="width: 100%;">');
+        die('<img src="img/erreur-404.jpg" style="width: 100%;"><meta http-equiv="refresh" content="4; URL=http://www.lesterresdaris.fr/"/>');
     }
 
 }
